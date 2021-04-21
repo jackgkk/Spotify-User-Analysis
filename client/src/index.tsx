@@ -3,10 +3,27 @@ import ReactDOM from 'react-dom'
 import './index.scss'
 import reportWebVitals from './reportWebVitals'
 import LandingPage from './Pages/landingPage/landingPage'
+import TrackCard from './Components/TrackCard'
+import tracks from './Components/TrackCard/data'
+import { Track } from './types'
+import SideNav from './Components/SideNav'
+
+const track = new Track(
+  2,
+  tracks.name,
+  tracks.artists,
+  tracks.durationMs,
+  tracks.url,
+  tracks.image,
+  tracks.previewUrl
+)
 
 ReactDOM.render(
   <React.StrictMode>
-    <LandingPage />
+    <div>
+      <SideNav />
+      <TrackCard track={track} />
+    </div>
   </React.StrictMode>,
   document.getElementById('root')
 )
