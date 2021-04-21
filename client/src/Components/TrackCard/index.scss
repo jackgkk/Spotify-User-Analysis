@@ -1,0 +1,119 @@
+.container {
+  display: flex;
+  max-width: fit-content;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.cardWrap {
+  width: 329px;
+  min-height: 124px;
+  max-height: fit-content;
+  border-radius: 20px;
+  display: flex;
+  overflow: hidden;
+}
+
+.imageDiv {
+  width: 37%;
+  max-height: 100%;
+  position: relative;
+  cursor: pointer;
+  transition: 0.3s ease-out;
+  #albumImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(85%);
+  }
+  .playBtn {
+    position: absolute;
+    width: 17px;
+    height: 21px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &:hover {
+    .playBtn {
+      width: 20px;
+      height: 24px;
+      transform: translate(-45%, -50%);
+    }
+    #albumImage {
+      filter: brightness(95%);
+    }
+  }
+}
+
+.mainContent {
+  z-index: 2;
+  width: 63%;
+  position: relative;
+  padding: 12px 15px 7px 7px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+
+  h4 {
+    color: white;
+    font-size: 20px;
+    text-align: right;
+    line-height: 20px;
+  }
+
+  h5 {
+    color: white;
+    font-size: 15px;
+    text-align: right;
+    font-weight: 400;
+    line-height: 23px;
+  }
+
+  p {
+    color: white;
+    font-size: 12px;
+    text-align: right;
+    font-weight: 400;
+    line-height: 30px;
+  }
+}
+
+#albumImageBlured {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -2;
+  filter: brightness(95%);
+}
+
+.glassDiv {
+  top: 0px;
+  left: 0px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    154.85deg,
+    rgba(0, 0, 0, 0.1) 0%,
+    rgba(0, 0, 0, 0) 108.17%
+  );
+  backdrop-filter: blur(20px);
+  z-index: -1;
+}
+
+.footerButtons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.openBtn {
+  margin-right: 22px;
+}

@@ -1,0 +1,40 @@
+.navBar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100vh;
+  width: 83px;
+  padding: 48px 0px;
+  box-sizing: border-box;
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+    height: 130px;
+  }
+  transition: 0.1s ease-in;
+  button {
+    position: relative;
+  }
+  &:hover {
+    background: var(--yellow);
+    .sideNavIcon {
+      fill: white;
+    }
+  }
+}
+
+.sideNavIcon {
+  transition: 0.1s ease-in;
+}
+
+#yellowCircle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
