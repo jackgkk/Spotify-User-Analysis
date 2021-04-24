@@ -1,10 +1,17 @@
 import * as React from 'react'
+import { Link, Redirect, useHistory } from 'react-router-dom'
 import artists from '../../assets/Artists.svg'
 import songs from '../../assets/MusicNotes.svg'
-import circle from '../../assets/yellowCircle.svg'
 import './index.scss'
+import CricleIcon from '../../assets/yellowCircle'
 
 export default function SideNav () {
+  const history = useHistory()
+
+  function redirect (location: string) {
+    history.push(location)
+  }
+
   return (
     <>
       <div className="spaceDiv"></div>
@@ -14,7 +21,19 @@ export default function SideNav () {
         </div>
         <ul>
           <li>
-            <button className="bareBtn">
+            <button
+              className="bareBtn navBtn"
+              onClick={() => redirect('/artistList')}
+            >
+              {history.location.pathname === '/artistList'
+                ? (
+                <CricleIcon id="yellowCircle" />
+                  )
+                : (
+                    ''
+                  )}
+              <CricleIcon id="whiteCircle" />
+
               <svg
                 className="sideNavIcon"
                 width="25"
@@ -29,8 +48,19 @@ export default function SideNav () {
             </button>
           </li>
           <li>
-            <button className="bareBtn">
-              <img src={circle} alt="" id="yellowCircle" />
+            <button
+              className="bareBtn navBtn"
+              onClick={() => redirect('/trackList')}
+            >
+              {history.location.pathname === '/trackList'
+                ? (
+                <CricleIcon id="yellowCircle" />
+                  )
+                : (
+                    ''
+                  )}
+              <CricleIcon id="whiteCircle" />
+
               <svg
                 className="sideNavIcon"
                 width="25"

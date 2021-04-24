@@ -82,6 +82,9 @@ li {
   border: none;
   padding: 0;
   background-color: transparent;
+  &:focus {
+    outline: none;
+  }
 }
 
 .mainButton {
