@@ -28,6 +28,9 @@
     .sideNavIcon {
       fill: white;
     }
+    #yellowCircle {
+      fill: white;
+    }
   }
 }
 
@@ -40,11 +43,37 @@
   transition: 0.1s ease-in;
 }
 
+.navBtn {
+  &:hover {
+    #whiteCircle {
+      transition: 0.3s ease-in;
+      display: inline;
+      opacity: 60%;
+    }
+  }
+
+  &:focus {
+    #whiteCircle {
+      transition: 0s;
+      opacity: 100%;
+    }
+  }
+}
+
 #yellowCircle {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-51%, -53%);
+}
+
+#whiteCircle {
+  display: none;
+  fill: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-51%, -53%);
 }
 
 @media (max-width: 650px) {

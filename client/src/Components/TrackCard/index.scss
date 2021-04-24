@@ -5,7 +5,7 @@
   margin-left: -15px;
 }
 
-.cardWrap {
+.trackCard-component * .cardWrap {
   width: 329px;
   min-height: 124px;
   max-height: fit-content;
@@ -14,7 +14,7 @@
   overflow: hidden;
 }
 
-.imageDiv {
+.trackCard-component * .imageDiv {
   width: 37%;
   max-height: 100%;
   position: relative;
@@ -48,7 +48,7 @@
   }
 }
 
-.mainContent {
+.trackCard-component * .mainContent {
   z-index: 2;
   width: 63%;
   position: relative;
@@ -92,7 +92,7 @@
   filter: brightness(95%);
 }
 
-.glassDiv {
+.trackCard-component * .glassDiv {
   border-radius: 0px 20px 20px 0px;
   top: 0px;
   left: 0px;
@@ -130,7 +130,7 @@
   .mainContent {
     width: 76%;
   }
-  .cardWrap {
+  .trackCard-component * .cardWrap {
     width: clamp(200px, 90vw, 400px);
 
     h4 {

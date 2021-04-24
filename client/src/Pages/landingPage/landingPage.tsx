@@ -6,7 +6,7 @@ import illustration from '../../assets/landingIlustration.svg'
 export default function LandingPage () {
   return (
     <div className="mainWrap">
-      <div className="navBar">
+      <div className="navMenu">
         <div className="logo">Logo</div>
         <ul>
           <li>
