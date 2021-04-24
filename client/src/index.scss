@@ -2,6 +2,7 @@
   --white: white;
   --black: black;
   --yellow: #f3a13b;
+  --grey: rgb(180, 180, 180);
 }
 @import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Open+Sans:wght@300;400;600;700&display=swap');
 
@@ -63,6 +64,7 @@ button {
   font-weight: bold;
   background-color: var(--white);
   transition: 0.2s ease-out;
+  border-radius: 5px;
   cursor: pointer;
   &:hover {
     transform: translateY(-10px);
@@ -97,13 +99,16 @@ li {
   font-family: 'Open Sans';
   font-weight: 600;
   font-size: 18px;
-  width: 106px;
   height: 31px;
   background-color: var(--white);
   color: var(--black);
+  border: none;
+  padding: 0px 15px;
+  &:hover {
+    transform: translateY(-3px);
+  }
   &:active {
-    color: var(--white);
-    background-color: var(--white);
+    border: 1px solid var(--grey);
   }
 }
 
@@ -112,7 +117,6 @@ li {
   border: 4px solid #000000;
   box-sizing: border-box;
   border-radius: 5px;
-  width: 148px;
   height: 44px;
 }
 

@@ -7,22 +7,28 @@ import TrackCard from './Components/TrackCard'
 import tracks from './Components/TrackCard/data'
 import { Track } from './types'
 import SideNav from './Components/SideNav'
+import ListPage from './Pages/ListPage'
 
-const track = new Track(
-  2,
-  tracks.name,
-  tracks.artists,
-  tracks.durationMs,
-  tracks.url,
-  tracks.image,
-  tracks.previewUrl
-)
+let count = 0
+const trackList = tracks.map(track => {
+  count++
+  return new Track(
+    count,
+    track.name,
+    track.artists,
+    track.durationMs,
+    track.url,
+    track.image,
+    track.previewUrl
+  )
+})
 
 ReactDOM.render(
   <React.StrictMode>
-    <div>
+    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
       <SideNav />
-      <TrackCard track={track} />
+      <ListPage tracks={trackList} />
+      <div></div>
     </div>
   </React.StrictMode>,
   document.getElementById('root')

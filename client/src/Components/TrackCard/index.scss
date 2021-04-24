@@ -1,10 +1,8 @@
-.container {
+.cardContainer {
   display: flex;
   max-width: fit-content;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  margin-left: -15px;
 }
 
 .cardWrap {
@@ -25,6 +23,7 @@
   #albumImage {
     width: 100%;
     height: 100%;
+    // max-width: 150px;
     object-fit: cover;
     filter: brightness(85%);
   }
@@ -94,6 +93,7 @@
 }
 
 .glassDiv {
+  border-radius: 0px 20px 20px 0px;
   top: 0px;
   left: 0px;
   position: absolute;
@@ -116,4 +116,29 @@
 
 .openBtn {
   margin-right: 22px;
+}
+
+.positionNumber {
+  text-align: right;
+  width: 15px;
+}
+
+@media (max-width: 900px) {
+  .imageDiv {
+    width: 34%;
+  }
+  .mainContent {
+    width: 76%;
+  }
+  .cardWrap {
+    width: clamp(200px, 90vw, 400px);
+
+    h4 {
+      font-size: clamp(15px, 5vw, 20px);
+    }
+
+    h5 {
+      font-size: clamp(12px, 4vw, 15px);
+    }
+  }
 }

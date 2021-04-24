@@ -19,7 +19,7 @@ function msToHMS (ms: number) {
 
 export default function TrackCard ({ track }: TrackCardProps) {
   return (
-    <div className="container">
+    <div className="cardContainer">
       <p className="positionNumber">{track.position}</p>
       <div className="cardWrap">
         <div className="imageDiv">

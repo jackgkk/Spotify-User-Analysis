@@ -7,6 +7,9 @@
   width: 83px;
   padding: 48px 0px;
   box-sizing: border-box;
+  position: fixed;
+  z-index: 10;
+  background: white;
 
   ul {
     display: flex;
@@ -28,6 +31,11 @@
   }
 }
 
+.spaceDiv {
+  width: 83px;
+  visibility: hidden;
+}
+
 .sideNavIcon {
   transition: 0.1s ease-in;
 }
@@ -37,4 +45,30 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+@media (max-width: 650px) {
+  .navBar {
+    flex-direction: row;
+    justify-content: center;
+    height: unset;
+    width: 100vw;
+    padding: 20px 20px;
+    position: fixed;
+    bottom: 0;
+    #yellowCircle {
+      transform: translate(-50%, -55%);
+    }
+
+    ul {
+      flex-direction: row;
+      height: unset;
+      width: 100%;
+      justify-content: space-around;
+    }
+  }
+  .logoWrap,
+  .spaceDiv {
+    display: none;
+  }
 }
