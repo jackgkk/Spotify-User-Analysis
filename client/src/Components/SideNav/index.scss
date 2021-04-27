@@ -1,0 +1,103 @@
+.navBar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100vh;
+  width: 83px;
+  padding: 48px 0px;
+  box-sizing: border-box;
+  position: fixed;
+  z-index: 10;
+  background: white;
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+    height: 130px;
+  }
+  transition: 0.1s ease-in;
+  button {
+    position: relative;
+  }
+  &:hover {
+    background: var(--yellow);
+    .sideNavIcon {
+      fill: white;
+    }
+    #yellowCircle {
+      fill: white;
+    }
+  }
+}
+
+.spaceDiv {
+  width: 83px;
+  visibility: hidden;
+}
+
+.sideNavIcon {
+  transition: 0.1s ease-in;
+}
+
+.navBtn {
+  &:hover {
+    #whiteCircle {
+      transition: 0.3s ease-in;
+      display: inline;
+      opacity: 60%;
+    }
+  }
+
+  &:focus {
+    #whiteCircle {
+      transition: 0s;
+      opacity: 100%;
+    }
+  }
+}
+
+#yellowCircle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-51%, -53%);
+}
+
+#whiteCircle {
+  display: none;
+  fill: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-51%, -53%);
+}
+
+@media (max-width: 650px) {
+  .navBar {
+    flex-direction: row;
+    justify-content: center;
+    height: unset;
+    width: 100vw;
+    padding: 20px 20px;
+    position: fixed;
+    bottom: 0;
+    #yellowCircle {
+      transform: translate(-50%, -55%);
+    }
+
+    ul {
+      flex-direction: row;
+      height: unset;
+      width: 100%;
+      justify-content: space-around;
+    }
+  }
+  .logoWrap,
+  .spaceDiv {
+    display: none;
+  }
+}

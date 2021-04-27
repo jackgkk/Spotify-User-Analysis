@@ -6,16 +6,17 @@ import illustration from '../../assets/landingIlustration.svg'
 export default function LandingPage () {
   return (
     <div className="mainWrap">
-      <div className="navBar">
+      <div className="navMenu">
+        <div className="logo">Logo</div>
         <ul>
           <li>
-            <p>GitHub</p>
+            <a href="#">GitHub</a>
           </li>
           <li>
-            <p>LinkedIn</p>
+            <a href="#">LinkedIn</a>
           </li>
           <li>
-            <p>Behance</p>
+            <a href="#">Behance</a>
           </li>
         </ul>
       </div>
@@ -33,6 +34,7 @@ export default function LandingPage () {
               src={logo}
               alt="small spotify logo svg"
               style={{ margin: '0 5px' }}
+              id="spotLogo"
             />
             sign in with Spotify
           </button>

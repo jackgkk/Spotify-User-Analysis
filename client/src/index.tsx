@@ -2,11 +2,11 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.scss'
 import reportWebVitals from './reportWebVitals'
-import LandingPage from './Pages/landingPage/landingPage'
+import Navigation from './navigation'
 
 ReactDOM.render(
   <React.StrictMode>
-    <LandingPage />
+    <Navigation />
   </React.StrictMode>,
   document.getElementById('root')
 )
