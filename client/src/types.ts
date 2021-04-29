@@ -1,6 +1,6 @@
 
 class Track {
-  constructor (id: string, type: string, position: number, name: string, artists: string[], durationMs: number, url: string, image: string, previewUrl: string) {
+  constructor (id: string, position: number, name: string, artists: string[], durationMs: number, url: string, image: string, previewUrl: string) {
     this.id = id
     this.position = position
     this.name = name
@@ -9,7 +9,7 @@ class Track {
     this.url = url
     this.image = image
     this.previewUrl = previewUrl
-    this.type = type
+    this.type = 'tracks'
 
     Object.freeze(this)
   }
@@ -26,7 +26,7 @@ class Track {
 }
 
 class Artist {
-  constructor (id: string, type: string, position: number, name: string, genres: string[], followers: number, url: string, image: string) {
+  constructor (id: string, position: number, name: string, genres: string[], followers: number, url: string, image: string) {
     this.id = id
     this.position = position
     this.name = name
@@ -34,7 +34,7 @@ class Artist {
     this.followers = followers
     this.url = url
     this.image = image
-    this.type = type
+    this.type = 'artists'
 
     Object.freeze(this)
   }

@@ -2,6 +2,8 @@ import * as React from 'react'
 import './index.scss'
 import logo from '../../assets/spotifyLogo.svg'
 import illustration from '../../assets/landingIlustration.svg'
+import { render } from '@testing-library/react'
+import apiMethods from '../../api/index'
 
 export default function LandingPage () {
   return (
@@ -29,7 +31,7 @@ export default function LandingPage () {
             Discover artists and songs you&apos;ve been listening the most to,
             and create a new playlist based on the results
           </p>
-          <button className="mainButton">
+          <button className="mainButton" onClick={apiMethods.fetchAuthCode}>
             <img
               src={logo}
               alt="small spotify logo svg"
