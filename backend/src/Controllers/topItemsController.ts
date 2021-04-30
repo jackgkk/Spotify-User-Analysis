@@ -1,6 +1,7 @@
-import axios, { AxiosRequestConfig } from "axios"
+import axios, { AxiosRequestConfig, AxiosResponse } from "axios"
 import express, { Request, Response } from "express"
 import queryString from "querystring"
+import Track from "../Models/trackModel"
 
 const apiURL = "https://api.spotify.com/v1/me/top/"
 
@@ -8,7 +9,9 @@ const getTopItems = (req: Request, res: Response) => {
   const token = req.query.token
   const type = req.query.type
   const timeRange = req.query.timeRange
-  const params = queryString.stringify({ time_range: timeRange?.toString() })
+  const params = queryString.stringify({
+    time_range: timeRange?.toString()
+  })
 
   const config: AxiosRequestConfig = {
     method: "GET",
@@ -19,12 +22,20 @@ const getTopItems = (req: Request, res: Response) => {
   }
 
   axios(config)
-    .then(response => console.log(response.data))
+    .then(response => {
+      res.send(handleResponseObject(response))
+      res.send({ mes: "yee boi" })
+    })
     .catch(err => {
       if (err.response) {
         // Request made and server responded
-        if (err.response.data.error.message === "Invalid access token") {
-          res.status(400).send({ message: "invalid token" })
+        const message = err.response.data.error.message
+
+        if (message === "The access token expired") {
+          res.status(401).send({ message: "invalid token" })
+        } else {
+          console.error("error getting the token", err.response)
+          res.status(401).send({ message: message })
         }
       } else if (err.request) {
         // The request was made but no response was received
@@ -33,6 +44,25 @@ const getTopItems = (req: Request, res: Response) => {
         // Something happened in setting up the request that triggered an Error
         console.log("Error", err.message)
       }
+    })
+}
+
+function handleResponseObject(res: AxiosResponse) {
+  let position = 0
+  const items = res.data.items
+  if (items[0].type === "track")
+    return items.map((e: any) => {
+      position++
+      return new Track(
+        e.id,
+        position,
+        e.name,
+        e.artists.map((a: { name: String }) => a.name),
+        e.duration_ms,
+        e.external_urls.spotify,
+        e.album.images[1].url,
+        e.preview_url
+      )
     })
 }
 

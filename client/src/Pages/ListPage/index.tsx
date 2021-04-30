@@ -6,49 +6,73 @@ import Line from '../../assets/yellowLine.svg'
 import ArtistCard from '../../Components/ArtistCard'
 import { artistType, trackType } from '../../navigation'
 import { useHistory, useLocation } from 'react-router'
-import queryString from 'querystring'
 import apiMethods from '../../api/index'
 
 interface ListPageProps {
-  listItems: (Track | Artist)[]
   token: String | null
-  fetchToken: (code: string | string[]) => void
   fetchRefreshToken: () => void
+  type: String
 }
 
 const isTrack = (x: any): x is trackType => x.type === 'tracks'
 const isArtist = (x: any): x is artistType => x.type === 'artists'
 
 export default function ListPage ({
-  listItems,
   token,
-  fetchToken,
-  fetchRefreshToken
+  fetchRefreshToken,
+  type
 }: ListPageProps) {
-  const location = useLocation()
+  const history = useHistory()
   const [timeRange, setTimeRange] = React.useState('short_term')
+  const [listItems, setListItems] = React.useState(['null'])
 
   React.useEffect(() => {
-    if (!token) {
-      const query = queryString.parse(location.search)
-      if (query['?code']) {
-        fetchToken(query['?code'])
-      }
-      if (query['?error']) {
-        console.log('error')
-      }
-    } else {
-      apiMethods.fetchTopItems(timeRange, token, 'tracks').then(res => {
-        if (!res.ok) {
+    if (token) {
+      apiMethods
+        .fetchTopItems(timeRange, token, type)
+        .then(res => handleErrors(res))
+        .then(res => {
+          handleSuccess(res)
+          console.log(listItems)
+        })
+        .catch(err => console.error(err))
+    } else history.push('/')
+  }, [token, type, timeRange])
+
+  function handleErrors (res: any) {
+    if (!res.ok) {
+      if (res.status === 401) {
+        res.json().then((res: { message: string }) => {
           if (res.message && res.message === 'invalid token') {
             fetchRefreshToken()
+          } else {
+            console.error('Error while fetching list data', res)
           }
-        } else {
-          console.log(res)
-        }
-      })
-    }
-  }, [])
+        })
+      } else {
+        console.error('Error while fetching list data')
+      }
+    } else return res.json()
+  }
+
+  function handleSuccess (res: any) {
+    console.log(res)
+    setListItems(
+      res.map(
+        (e: Track) =>
+          new Track(
+            e.id,
+            e.position,
+            e.name,
+            e.artists,
+            e.durationMs,
+            e.url,
+            e.image,
+            e.previewUrl
+          )
+      )
+    )
+  }
 
   return (
     <div className="container">
@@ -73,15 +97,17 @@ export default function ListPage ({
       </div>
 
       <div className="listWrap">
-        {listItems.map(e => {
-          if (isTrack(e)) {
-            return <TrackCard key={Math.random()} track={e} />
-          } else if (isArtist(e)) {
-            return <ArtistCard key={Math.random()} artist={e} />
-          }
+        {listItems.length > 0
+          ? listItems.map(e => {
+            if (isTrack(e)) {
+              return <TrackCard key={Math.random()} track={e} />
+            } else if (isArtist(e)) {
+              return <ArtistCard key={Math.random()} artist={e} />
+            }
 
-          return <div key="1">Error Happened</div>
-        })}
+            return <div key="1">Error Happened</div>
+          })
+          : 'no data'}
       </div>
     </div>
   )

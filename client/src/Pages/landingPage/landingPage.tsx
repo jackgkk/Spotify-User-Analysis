@@ -4,8 +4,29 @@ import logo from '../../assets/spotifyLogo.svg'
 import illustration from '../../assets/landingIlustration.svg'
 import { render } from '@testing-library/react'
 import apiMethods from '../../api/index'
+import queryString from 'querystring'
+import { useHistory, useLocation } from 'react-router'
 
-export default function LandingPage () {
+interface LandingPageProps {
+  token: String | null
+  fetchToken: (code: string | string[]) => void
+}
+
+export default function LandingPage ({ token, fetchToken }: LandingPageProps) {
+  const location = useLocation()
+
+  React.useEffect(() => {
+    if (!token) {
+      const query = queryString.parse(location.search)
+      if (query['?code']) {
+        fetchToken(query['?code'])
+      } else if (query['?error']) {
+        window.alert("There's an arror with authorizing. Please try again")
+        console.log('error')
+      }
+    }
+  })
+
   return (
     <div className="mainWrap">
       <div className="navMenu">
