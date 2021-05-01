@@ -25,6 +25,7 @@ export default function ListPage ({
   const history = useHistory()
   const [timeRange, setTimeRange] = React.useState('short_term')
   const [listItems, setListItems] = React.useState(['null'])
+  const buttonsRef = React.useRef<HTMLDivElement>(null)
 
   React.useEffect(() => {
     if (token) {
@@ -37,6 +38,33 @@ export default function ListPage ({
         })
         .catch(err => console.error(err))
     } else history.push('/')
+
+    switch (timeRange) {
+      case 'short_term':
+        if (buttonsRef && buttonsRef.current) {
+          buttonsRef.current.children[1]!.id = ''
+          buttonsRef.current.children[2]!.id = ''
+
+          buttonsRef.current.children[0]!.id = 'activated'
+        }
+        break
+      case 'medium_term':
+        if (buttonsRef && buttonsRef.current) {
+          buttonsRef.current.children[0]!.id = ''
+          buttonsRef.current.children[2]!.id = ''
+
+          buttonsRef.current.children[1]!.id = 'activated'
+        }
+        break
+      case 'long_term':
+        if (buttonsRef && buttonsRef.current) {
+          buttonsRef.current.children[0]!.id = ''
+          buttonsRef.current.children[1]!.id = ''
+
+          buttonsRef.current.children[2]!.id = 'activated'
+        }
+        break
+    }
   }, [token, type, timeRange])
 
   function handleErrors (res: any) {
@@ -57,21 +85,38 @@ export default function ListPage ({
 
   function handleSuccess (res: any) {
     console.log(res)
-    setListItems(
-      res.map(
-        (e: Track) =>
-          new Track(
-            e.id,
-            e.position,
-            e.name,
-            e.artists,
-            e.durationMs,
-            e.url,
-            e.image,
-            e.previewUrl
-          )
+    if (type === 'tracks') {
+      setListItems(
+        res.map(
+          (e: Track) =>
+            new Track(
+              e.id,
+              e.position,
+              e.name,
+              e.artists,
+              e.durationMs,
+              e.url,
+              e.image,
+              e.previewUrl
+            )
+        )
       )
-    )
+    } else if (type === 'artists') {
+      setListItems(
+        res.map(
+          (e: Artist) =>
+            new Artist(
+              e.id,
+              e.position,
+              e.name,
+              e.genres,
+              e.followers,
+              e.url,
+              e.image
+            )
+        )
+      )
+    }
   }
 
   return (
@@ -89,10 +134,25 @@ export default function ListPage ({
           <p>Artists you couldn’t get enough of in the last:</p>
             )}
 
-        <div className="switchBtns">
-          <button className="switchButton">1 month</button>
-          <button className="switchButton">6 months</button>
-          <button className="switchButton">All time</button>
+        <div className="switchBtns" ref={buttonsRef}>
+          <button
+            className="switchButton"
+            onClick={() => setTimeRange('short_term')}
+          >
+            1 month
+          </button>
+          <button
+            className="switchButton"
+            onClick={() => setTimeRange('medium_term')}
+          >
+            6 months
+          </button>
+          <button
+            className="switchButton"
+            onClick={() => setTimeRange('long_term')}
+          >
+            All time
+          </button>
         </div>
       </div>
 

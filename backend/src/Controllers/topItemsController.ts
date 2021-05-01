@@ -2,6 +2,7 @@ import axios, { AxiosRequestConfig, AxiosResponse } from "axios"
 import express, { Request, Response } from "express"
 import queryString from "querystring"
 import Track from "../Models/trackModel"
+import Artist from "../Models/artistModel"
 
 const apiURL = "https://api.spotify.com/v1/me/top/"
 
@@ -10,7 +11,8 @@ const getTopItems = (req: Request, res: Response) => {
   const type = req.query.type
   const timeRange = req.query.timeRange
   const params = queryString.stringify({
-    time_range: timeRange?.toString()
+    time_range: timeRange?.toString(),
+    limit: 50
   })
 
   const config: AxiosRequestConfig = {
@@ -24,7 +26,6 @@ const getTopItems = (req: Request, res: Response) => {
   axios(config)
     .then(response => {
       res.send(handleResponseObject(response))
-      res.send({ mes: "yee boi" })
     })
     .catch(err => {
       if (err.response) {
@@ -62,6 +63,19 @@ function handleResponseObject(res: AxiosResponse) {
         e.external_urls.spotify,
         e.album.images[1].url,
         e.preview_url
+      )
+    })
+  else if (items[0].type === "artist")
+    return items.map((e: any) => {
+      position++
+      return new Artist(
+        e.id,
+        position,
+        e.name,
+        e.genres.slice(0, 3),
+        e.followers.total,
+        e.external_urls.spotify,
+        e.images[1].url
       )
     })
 }
