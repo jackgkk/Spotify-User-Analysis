@@ -1,5 +1,11 @@
 import * as React from 'react'
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect
+} from 'react-router-dom'
 import artists from './Components/ArtistCard/data'
 import SideNav from './Components/SideNav'
 import tracks from './Components/TrackCard/data'
@@ -73,7 +79,7 @@ export default function Navigation () {
       .then(res => {
         window.localStorage.setItem('accessToken', res.access_token)
         setToken(res.access_token)
-        console.log(token)
+        console.log('new refreshed token:', token)
       })
       .catch(() => console.log('Error while fetching the refresh token'))
   }
@@ -82,31 +88,47 @@ export default function Navigation () {
     <Router>
       <Switch>
         <Route exact path="/">
-          <LandingPage />
+          {token
+            ? (
+            <Redirect to="/tracklist" />
+              )
+            : (
+            <LandingPage token={token} fetchToken={fetchToken} />
+              )}
         </Route>
         <Route path="/trackList" exact>
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <SideNav />
-            <ListPage
-              token={token}
-              listItems={trackList}
-              fetchToken={fetchToken}
-              fetchRefreshToken={fetchRefreshToken}
-            />
-            <div></div>
-          </div>
+          {!token
+            ? (
+            <Redirect to="/" />
+              )
+            : (
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <SideNav />
+              <ListPage
+                token={token}
+                fetchRefreshToken={fetchRefreshToken}
+                type="tracks"
+              />
+              <div></div>
+            </div>
+              )}
         </Route>
         <Route path="/artistList" exact>
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <SideNav />
-            <ListPage
-              token={token}
-              listItems={artistList}
-              fetchToken={fetchToken}
-              fetchRefreshToken={fetchRefreshToken}
-            />
-            <div></div>
-          </div>
+          {!token
+            ? (
+            <Redirect to="/" />
+              )
+            : (
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <SideNav />
+              <ListPage
+                token={token}
+                fetchRefreshToken={fetchRefreshToken}
+                type="artists"
+              />
+              <div></div>
+            </div>
+              )}
         </Route>
       </Switch>
     </Router>

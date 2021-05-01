@@ -16,7 +16,16 @@ function fetchTopItems (timeRange: String, token: String, type: String) {
     headers: {
       'Content-Type': 'application/json'
     }
-  }).then(res => res.json())
+  })
+
+  // .then(res =>
+  //   res.ok
+  //     ? res.json()
+  //     : res.json().then(res => {
+  //       res.status = 401
+  //       return res
+  //     })
+  // )
 }
 
 export default { fetchTopItems, fetchAuthCode }
