@@ -1,9 +1,15 @@
 .container {
-  padding: 20px 0px 0px 100px;
+  padding: 20px 50px 0px 80px;
   width: 100vw;
   max-width: 1600px;
   box-sizing: border-box;
   display: block;
+}
+
+.headerContainer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
 }
 
 .headerDiv {
@@ -43,8 +49,33 @@
   width: 100%;
 }
 
+#animateRender {
+  .trackCard-component,
+  .artistCard-component {
+    opacity: 0;
+    animation: appearAnimation 250ms ease-out forwards;
+    @for $i from 0 through 49 {
+      &:nth-child(#{$i}) {
+        animation-delay: 75ms * $i;
+      }
+    }
+  }
+}
+
+@keyframes appearAnimation {
+  0% {
+    opacity: 0;
+    transform: scale(0.6) translateY(-8px);
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
 .cardWrap {
-  margin: 0px 30px 50px 0px;
+  margin-right: 30px;
+  margin-bottom: 40px;
 }
 
 #underlineText {
@@ -60,6 +91,13 @@
   }
 }
 
+.loadingContainer {
+  height: calc(100vh - 300px);
+  width: 100%;
+  position: relative;
+  box-sizing: border-box;
+}
+
 @media (max-width: 650px) {
   .container {
     padding: 15px 5vw 90px 5vw;
@@ -68,6 +106,12 @@
     flex-direction: column;
     width: 100%;
     align-items: center;
+
+    h2 {
+      display: flex;
+      font-size: clamp(2.35rem, 5.85vw, 52px);
+      margin: clamp(5px, 2vw, 15px) 0;
+    }
   }
 
   .listWrap {
@@ -91,6 +135,10 @@
 
   .switchButton {
     font-size: clamp(1.1rem, 2.4vw, 24px);
+    &:hover {
+      transform: unset;
+      outline: none;
+    }
   }
 }
 

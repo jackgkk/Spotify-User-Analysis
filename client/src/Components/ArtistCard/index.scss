@@ -8,10 +8,41 @@
 .artistCard-component * .cardWrap {
   width: 329px;
   min-height: 151px;
-  max-height: fit-content;
+  max-height: 151px;
   border-radius: 20px;
   display: flex;
   overflow: hidden;
+  transition: 0.15s ease-out 0.12s;
+
+  &:hover {
+    width: 340px;
+    max-height: fit-content;
+    .animationTextWrapper {
+      max-height: 250px;
+      transition: 2s ease-out;
+      transition-delay: 0.5s;
+      h4 {
+        animation: textHoverAnimation 0.1s ease-in 0.12s forwards;
+      }
+    }
+    p {
+      animation: textHoverAnimation 0.1s ease-in 0.12s forwards;
+    }
+    .plusBtn {
+      img {
+        transition: 0.15s ease-out 0.12s;
+        width: 15px;
+      }
+    }
+  }
+}
+
+@keyframes textHoverAnimation {
+  100% {
+    text-overflow: unset;
+    white-space: unset;
+    overflow: unset;
+  }
 }
 
 .artistCard-component * .imageDiv {
@@ -20,36 +51,23 @@
   position: relative;
   cursor: pointer;
   transition: 0.3s ease-out;
+
   #albumImage {
     width: 100%;
     height: 100%;
-    // max-width: 150px;
     object-fit: cover;
     filter: brightness(85%);
-  }
-  .playBtn {
-    position: absolute;
-    width: 17px;
-    height: 21px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    transition: 0.3s ease-out;
   }
 
   &:hover {
-    .playBtn {
-      width: 20px;
-      height: 24px;
-      transform: translate(-45%, -50%);
-    }
     #albumImage {
-      filter: brightness(95%);
+      filter: brightness(90%);
     }
   }
 }
 
 .artistCard-component * .mainContent {
-  z-index: 2;
   width: 63%;
   position: relative;
   padding: 12px 15px 7px 7px;
@@ -58,40 +76,55 @@
   justify-content: space-between;
   box-sizing: border-box;
   text-align: left;
+  .animationTextWrapper {
+    max-height: 25px;
+    overflow: hidden;
+  }
 
   h4 {
     font-family: 'Dela Gothic One';
     font-weight: 400;
     color: white;
     font-size: 20px;
-    line-height: 20px;
+    line-height: 26px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-align: left;
   }
 
   p {
     color: white;
     font-weight: 400;
     font-size: 12px;
-    line-height: 14px;
-    margin: 7px 0px 20px 0px;
-
-    #followers {
-      font-size: 12px;
-      font-weight: 600;
-    }
+    line-height: 16px;
+    margin: 7px 0px 0px 0px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
 }
 
-#albumImageBlured {
+#followersPar {
+  margin-top: 20px;
+}
+
+#followers {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.artistCard-component * #albumImageBlured {
   position: absolute;
-  width: 100%;
+  width: 110%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: -2;
-  filter: brightness(95%);
+  filter: brightness(75%);
 }
 
-.glassDiv {
+.artistCard-component * .glassDiv {
   border-radius: 0px 20px 20px 0px;
   top: 0px;
   left: 0px;
@@ -107,17 +140,17 @@
   z-index: -1;
 }
 
-.footerButtons {
+.artistCard-component * .footerButtons {
   display: flex;
   justify-content: flex-end;
   align-items: center;
 }
 
-.openBtn {
+.artistCard-component * .openBtn {
   margin-right: 22px;
 }
 
-.positionNumber {
+.artistCard-component * .positionNumber {
   text-align: right;
   width: 15px;
 }
@@ -132,13 +165,25 @@
   .artistCard-component * .cardWrap {
     width: clamp(200px, 90vw, 400px);
     min-height: 120px;
+    max-height: fit-content;
 
     h4 {
       font-size: clamp(15px, 5vw, 20px);
     }
 
-    h5 {
-      font-size: clamp(12px, 4vw, 15px);
+    h4,
+    p {
+      text-overflow: unset;
+      white-space: unset;
+      overflow: unset;
+    }
+
+    .animationTextWrapper {
+      max-height: 350px;
+    }
+
+    &:hover {
+      width: clamp(200px, 90vw, 400px);
     }
   }
 }

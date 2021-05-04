@@ -12,19 +12,62 @@
   border-radius: 20px;
   display: flex;
   overflow: hidden;
-  //transition: 0.2s ease-in-out;
+  transition: 0.00005s;
   &:hover {
     width: 350px;
-    min-height: 134px;
-    h4,
+    max-height: fit-content;
+    margin-right: 20px;
+    transition: 0.1s ease-in-out 0.1s;
+
+    .animationTextWrapper {
+      max-height: 350px;
+      transition: 2s ease-out;
+      transition-delay: 0.3s;
+      h4 {
+        animation: textHoverAnimation 0.2s ease-in 0.2s forwards;
+      }
+    }
     h5 {
-      text-overflow: unset;
-      white-space: unset;
-      overflow: unset;
+      animation: textHoverAnimation 0.2s ease-in 0.2s forwards;
     }
+    .plusBtn {
+      img {
+        transition: 0.15s ease-out 0.12s;
+
+        width: 15px;
+      }
+    }
+  }
+}
+
+#extendedCard {
+  width: 350px;
+  max-height: fit-content;
+  .animationTextWrapper {
+    max-height: 350px;
+    transition: 2s ease-out;
+    transition-delay: 0.4s;
+    h4 {
+      animation: textHoverAnimation 0.1s ease-in 0.3s forwards;
+    }
+  }
+  h5 {
+    animation: textHoverAnimation 0.1s ease-in 0.3s forwards;
+  }
+  .plusBtn {
     img {
-      transition: 0.2s ease-in-out;
+      transition: 0.15s ease-out 0.12s;
+
+      width: 15px;
     }
+  }
+}
+
+@keyframes textHoverAnimation {
+  100% {
+    text-overflow: unset;
+    white-space: unset;
+    overflow: unset;
   }
 }
 
@@ -33,8 +76,8 @@
   max-height: 100%;
   position: relative;
   cursor: pointer;
-  transition: 0.3s ease-out;
   #albumImage {
+    transition: 0.15s ease-out 0.6s;
     width: 100%;
     height: 100%;
     // max-width: 150px;
@@ -48,22 +91,17 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    transition: 0.3s ease-out 0.6s;
   }
 
   &:hover {
-    .playBtn {
-      width: 20px;
-      height: 24px;
-      transform: translate(-45%, -50%);
-    }
     #albumImage {
-      filter: brightness(95%);
+      filter: brightness(90%);
     }
   }
 }
 
 .trackCard-component * .mainContent {
-  z-index: 2;
   width: 63%;
   position: relative;
   padding: 5px 15px 7px 12px;
@@ -71,17 +109,26 @@
   flex-direction: column;
   justify-content: space-between;
   box-sizing: border-box;
+  .animationTextWrapper {
+    max-height: 30px;
+    overflow: hidden;
+  }
 
   h4 {
+    transition-delay: 2s;
     color: white;
     font-size: 20px;
     text-align: right;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    line-height: 25px;
+    margin: 3px 0px;
   }
 
   h5 {
+    transition-delay: 2s;
+
     color: white;
     font-size: 15px;
     text-align: right;
@@ -101,9 +148,9 @@
   }
 }
 
-#albumImageBlured {
+.trackCard-component * #albumImageBlured {
   position: absolute;
-  width: 100%;
+  width: 110%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -116,12 +163,12 @@
   top: 0px;
   left: 0px;
   position: absolute;
-  width: 100%;
-  height: 100%;
+  width: 101%;
+  height: 101%;
   background: linear-gradient(
     154.85deg,
-    rgba(0, 0, 0, 0.3) 0%,
-    rgba(0, 0, 0, 0.4) 108.17%
+    rgba(0, 0, 0, 0.25) 0%,
+    rgba(0, 0, 0, 0.2) 108.17%
   );
   backdrop-filter: blur(20px);
   z-index: -1;
@@ -131,6 +178,14 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
+}
+
+.plusBtn {
+  img {
+    transition: 0.2s ease-out;
+
+    width: 13px;
+  }
 }
 
 .openBtn {
@@ -149,15 +204,34 @@
   .mainContent {
     width: 76%;
   }
+
+  #extendedCard {
+    width: clamp(200px, 90vw, 400px);
+  }
+
   .trackCard-component * .cardWrap {
     width: clamp(200px, 90vw, 400px);
 
     h4 {
       font-size: clamp(15px, 5vw, 20px);
+      text-overflow: unset;
+      white-space: unset;
+      overflow: unset;
     }
 
     h5 {
       font-size: clamp(12px, 4vw, 15px);
+      text-overflow: unset;
+      white-space: unset;
+      overflow: unset;
+    }
+
+    .animationTextWrapper {
+      max-height: 350px;
+    }
+
+    &:hover {
+      width: clamp(200px, 90vw, 400px);
     }
   }
 }
