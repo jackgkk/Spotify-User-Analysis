@@ -7,6 +7,7 @@ import {
   Redirect
 } from 'react-router-dom'
 import artists from './Components/ArtistCard/data'
+import CreatePlaylistWindow from './Components/CreatePlaylistWindow'
 import SideNav from './Components/SideNav'
 import tracks from './Components/TrackCard/data'
 import LandingPage from './Pages/landingPage/landingPage'
@@ -130,6 +131,7 @@ export default function Navigation () {
             </div>
               )}
         </Route>
+        <Route path="/ggg" exact></Route>
       </Switch>
     </Router>
   )

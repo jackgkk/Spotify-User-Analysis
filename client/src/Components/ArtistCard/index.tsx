@@ -1,12 +1,16 @@
 import * as React from 'react'
 import { FunctionExpression } from 'typescript'
-import { Artist } from '../../types'
+import { Artist, Track } from '../../types'
 import artists from './data'
 import Plus from '../../assets/PlusButton.svg'
 import './index.scss'
+import { faCheck } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 interface ArtistCardProps {
   artist: Artist
+  pickAnItem: (item: Track | Artist) => void
+  pickedItems: (Track | Artist)[]
 }
 
 const ranges = [
@@ -28,7 +32,16 @@ function formatNumber (n: number) {
   return n.toString()
 }
 
-export default function ArtistCard ({ artist }: ArtistCardProps) {
+export default function ArtistCard ({
+  artist,
+  pickAnItem,
+  pickedItems
+}: ArtistCardProps) {
+  function openArtistPage () {
+    const newWindow = window.open(artist.url, '_blank', 'noopener,noreferrer')
+    if (newWindow) newWindow.opener = null
+  }
+
   return (
     <div className="artistCard-component">
       <div className="cardContainer">
@@ -40,26 +53,42 @@ export default function ArtistCard ({ artist }: ArtistCardProps) {
           <div className="mainContent">
             <img src={artist.image} alt="" id="albumImageBlured" />
             <div className="glassDiv"></div>
-            <div className="textWrap">
-              <h4>{artist.name}</h4>
-              <p>
-                {artist.genres.map(e => {
-                  if (artist.genres.indexOf(e) !== artist.genres.length - 1) {
-                    return e + ', '
-                  }
+            <div className="textContentWrap">
+              <div className="animationTextWrapper">
+                <h4>{artist.name}</h4>
+              </div>
+              <div className="animationTextWrapper">
+                <p>
+                  {artist.genres.map(e => {
+                    if (artist.genres.indexOf(e) !== artist.genres.length - 1) {
+                      return e + ', '
+                    }
 
-                  return e
-                })}
-              </p>
-              <p>
+                    return e
+                  })}
+                </p>
+              </div>
+
+              <p id="followersPar">
                 <span id="followers">{formatNumber(artist.followers)}</span>{' '}
                 followers
               </p>
             </div>
             <div className="footerButtons">
-              <button className="bareBtn openBtn">open</button>
-              <button className="bareBtn plusBtn ">
-                <img src={Plus} alt="" />
+              <button className="bareBtn openBtn" onClick={openArtistPage}>
+                open
+              </button>
+              <button
+                className="bareBtn plusBtn "
+                onClick={() => pickAnItem(artist)}
+              >
+                {pickedItems.filter(i => i.id === artist.id).length === 0
+                  ? (
+                  <img src={Plus} alt="" />
+                    )
+                  : (
+                  <FontAwesomeIcon icon={faCheck} color="white" />
+                    )}
               </button>
             </div>
           </div>
