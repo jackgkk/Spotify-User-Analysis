@@ -11,7 +11,7 @@ const encodedData = Buffer.from(clientId + ":" + clientSecret).toString(
 const redirectURI = "http://192.168.1.2:3000/"
 const state = "g223u3i2f20"
 
-const authURL = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${redirectURI}&scope=user-read-private%20user-read-email%20user-top-read&state=${state}`
+const authURL = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${redirectURI}&scope=user-read-private%20playlist-modify-private%20playlist-modify-public%20user-read-email%20user-top-read&state=${state}`
 const tokensURL = "https://accounts.spotify.com/api/token"
 
 const getAuth = (req: Request, res: Response) => {
