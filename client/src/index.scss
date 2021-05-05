@@ -41,6 +41,12 @@ h2 {
   font-size: 52px;
   letter-spacing: 0.025em;
 }
+h3 {
+  font-family: Dela Gothic One;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+}
 a {
   font-family: 'Open Sans';
   font-weight: 600;
@@ -67,7 +73,7 @@ button {
   border-radius: 5px;
   cursor: pointer;
   &:hover {
-    transform: translateY(-10px);
+    transform: translateY(-5px);
   }
 }
 
@@ -116,11 +122,17 @@ li {
 }
 
 .smallButton {
+  font-size: 12px;
   background: var(--white);
   border: 4px solid #000000;
   box-sizing: border-box;
   border-radius: 5px;
   height: 44px;
+  padding: 0 25px;
+  font-weight: bold;
+  &:hover {
+    transform: unset;
+  }
 }
 
 .openBtn {

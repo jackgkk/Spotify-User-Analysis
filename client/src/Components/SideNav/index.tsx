@@ -11,6 +11,7 @@ export default function SideNav () {
   function redirect (location: string) {
     history.push(location)
   }
+  console.log(history.location.pathname)
 
   return (
     <>
@@ -23,9 +24,9 @@ export default function SideNav () {
           <li>
             <button
               className="bareBtn navBtn"
-              onClick={() => redirect('/artistList')}
+              onClick={() => redirect('/artistlist')}
             >
-              {history.location.pathname === '/artistList'
+              {history.location.pathname === '/artistlist'
                 ? (
                 <CricleIcon id="yellowCircle" />
                   )
@@ -50,9 +51,9 @@ export default function SideNav () {
           <li>
             <button
               className="bareBtn navBtn"
-              onClick={() => redirect('/trackList')}
+              onClick={() => redirect('/tracklist')}
             >
-              {history.location.pathname === '/trackList'
+              {history.location.pathname === '/tracklist'
                 ? (
                 <CricleIcon id="yellowCircle" />
                   )

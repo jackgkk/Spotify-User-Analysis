@@ -19,7 +19,7 @@
     padding: 0;
     height: 130px;
   }
-  transition: 0.1s ease-in;
+  transition: 0.05s ease-in;
   button {
     position: relative;
   }
@@ -94,6 +94,19 @@
       height: unset;
       width: 100%;
       justify-content: space-around;
+    }
+
+    &:hover {
+      background: var(--white);
+      .sideNavIcon {
+        fill: #000;
+      }
+      #yellowCircle {
+        fill: var(--yellow);
+      }
+      #whiteCircle {
+        display: none;
+      }
     }
   }
   .logoWrap,
