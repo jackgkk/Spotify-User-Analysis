@@ -12,9 +12,13 @@
   &:hover {
     .trackCircles {
       margin-top: 0;
-      transform: translateY(5px);
+      transform: translateY(2px);
     }
   }
+}
+
+.spaceDiv2 {
+  display: none;
 }
 
 .trackCircles {
@@ -33,4 +37,21 @@
   border-radius: 50%;
   margin-left: -10px;
   cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .spaceDiv2 {
+    display: block;
+    height: 60px;
+  }
+  .playlistButtonContainer {
+    position: fixed;
+    top: 20px;
+    margin: 0px;
+    z-index: 100;
+    box-sizing: border-box;
+  }
+  .smallButton {
+    margin: 0;
+  }
 }

@@ -56,7 +56,7 @@
     animation: appearAnimation 250ms ease-out forwards;
     @for $i from 0 through 49 {
       &:nth-child(#{$i}) {
-        animation-delay: 110ms * $i;
+        animation-delay: 75ms * $i;
       }
     }
   }

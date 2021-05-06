@@ -8,6 +8,7 @@ const clientSecret = process.env.CLIENT_SECRET
 const encodedData = Buffer.from(clientId + ":" + clientSecret).toString(
   "base64"
 )
+//const redirectURI = "http://192.168.43.90:3000/"
 const redirectURI = "http://192.168.1.2:3000/"
 const state = "g223u3i2f20"
 

@@ -9,9 +9,8 @@ import { faCheck, faPause } from '@fortawesome/free-solid-svg-icons'
 
 interface TrackCardProps {
   track: Track
-  audioElements: HTMLAudioElement[]
-  pickAnItem: (item: Track | Artist) => void
-  pickedItems: (Track | Artist)[]
+  pickAnItem?: (item: Track | Artist) => void
+  pickedItems?: (Track | Artist)[]
 }
 
 function msToHMS (ms: number) {
@@ -22,7 +21,6 @@ function msToHMS (ms: number) {
 
 export default function TrackCard ({
   track,
-  audioElements,
   pickAnItem,
   pickedItems
 }: TrackCardProps) {
@@ -98,18 +96,24 @@ export default function TrackCard ({
               <button className="bareBtn openBtn" onClick={openTackPage}>
                 open
               </button>
-              <button
-                className="bareBtn plusBtn "
-                onClick={() => pickAnItem(track)}
-              >
-                {pickedItems.filter(i => i.id === track.id).length === 0
-                  ? (
-                  <img src={Plus} alt="" />
-                    )
-                  : (
-                  <FontAwesomeIcon icon={faCheck} color="white" />
-                    )}
-              </button>
+              {pickAnItem
+                ? (
+                <button
+                  className="bareBtn plusBtn "
+                  onClick={() => pickAnItem(track)}
+                >
+                  {pickedItems?.filter(i => i.id === track.id).length === 0
+                    ? (
+                    <img src={Plus} alt="" />
+                      )
+                    : (
+                    <FontAwesomeIcon icon={faCheck} color="white" />
+                      )}
+                </button>
+                  )
+                : (
+                    ''
+                  )}
             </div>
           </div>
         </div>

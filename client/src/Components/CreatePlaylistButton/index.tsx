@@ -10,19 +10,23 @@ interface Props {
 
 export default function CreatePlaylistButton ({ items, onClick }: Props) {
   return (
-    <div className="playlistButtonContainer">
-      <button onClick={onClick} className="smallButton">
-        Create Playlist
-      </button>
-      <div className="trackCircles">
-        {items?.map(e => {
-          if (e) {
-            return (
-              <img key={e.image} src={e.image} className="circleImage"></img>
-            )
-          } else return ''
-        })}
+    <>
+      <div className="spaceDiv2"></div>
+
+      <div className="playlistButtonContainer">
+        <button onClick={onClick} className="smallButton">
+          Create Playlist
+        </button>
+        <div className="trackCircles">
+          {items?.map(e => {
+            if (e) {
+              return (
+                <img key={e.image} src={e.image} className="circleImage"></img>
+              )
+            } else return ''
+          })}
+        </div>
       </div>
-    </div>
+    </>
   )
 }

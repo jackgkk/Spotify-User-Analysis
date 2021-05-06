@@ -6,9 +6,18 @@ import CreatePlaylistWindow from '../CreatePlaylistWindow'
 interface Props {
   items: (Artist | Track)[] | null
   removeAnItem: (id: string) => void
+  createPlaylistBasedOnSeeds: (
+    name: string,
+    limit: number,
+    setErrorStack: React.Dispatch<React.SetStateAction<boolean>>
+  ) => Promise<void> | undefined
 }
 
-export default function CreatePlaylist ({ items, removeAnItem }: Props) {
+export default function CreatePlaylist ({
+  createPlaylistBasedOnSeeds,
+  items,
+  removeAnItem
+}: Props) {
   const [togglePopup, setTogglePopup] = React.useState(false)
 
   return (
@@ -25,6 +34,7 @@ export default function CreatePlaylist ({ items, removeAnItem }: Props) {
           items={items}
           onClick={() => setTogglePopup(false)}
           removeAnItem={removeAnItem}
+          createPlaylistBasedOnSeeds={createPlaylistBasedOnSeeds}
         />
           )}
     </>

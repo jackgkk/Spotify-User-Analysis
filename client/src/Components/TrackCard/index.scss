@@ -212,6 +212,9 @@
   .trackCard-component * .cardWrap {
     width: clamp(200px, 90vw, 400px);
 
+    &:hover {
+      margin: 0;
+    }
     h4 {
       font-size: clamp(15px, 5vw, 20px);
       text-overflow: unset;

@@ -1,16 +1,22 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios"
-import express, { Request, Response } from "express"
+import express, { query, Request, Response } from "express"
 import { create } from "node:domain"
 import { send } from "node:process"
+import Track from "../Models/trackModel"
+import getTopItemsController from '../Controllers/topItemsController'
+
 
 function getRecommendedItems(req: Request, res: Response) {
   const token = req.query.token
   const limit = req.query.limit
   const name = req.query.name
-  const seedTracks = req.query.seedTracks
-  const seedArtists = req.query.seedArtists
+  let seedTracks = req.query.seedTracks
+  let seedArtists = req.query.seedArtists
   const url = "https://api.spotify.com/v1/recommendations"
+  let trackList: Track[] = []
 
+  if (seedArtists?.length == 0) seedArtists = 'xxxxxxxxxxxxxxxxxxxxxx'
+  if (seedTracks?.length == 0) seedTracks = 'xxxxxxxxxxxxxxxxxxxxxx'
   const queryParams =
     url +
     "?" +
@@ -28,11 +34,15 @@ function getRecommendedItems(req: Request, res: Response) {
         Authorization: "Bearer " + token
       }
     })
-    .then(response =>
+    .then(response => {
+      trackList = getTopItemsController.handleResponseObject(response.data.tracks)
       createAndAddItemsToPlaylist(token!.toString(), response, name!.toString())
-        .then(response => res.status(200).send)
-        .catch(err => console.log(err))
-    )
+        .then(response => res.send(trackList))
+        .catch(err => {
+          console.log(err)
+          res.status(err.status).send()
+        })
+    })
     .catch(err => {
       if (err.response) {
         // Request made and server responded
@@ -49,7 +59,7 @@ function getRecommendedItems(req: Request, res: Response) {
         console.log(err.request)
       } else {
         // Something happened in setting up the request that triggered an Error
-        console.log("Error", err.message)
+        console.log("Error sending recommendation request: ", err)
       }
     })
 }

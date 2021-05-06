@@ -12,6 +12,7 @@ import SideNav from './Components/SideNav'
 import tracks from './Components/TrackCard/data'
 import LandingPage from './Pages/landingPage/landingPage'
 import ListPage from './Pages/ListPage'
+import PlaylistPage from './Pages/PlaylistPage'
 import { Artist, Track } from './types'
 
 let count = 0
@@ -47,6 +48,8 @@ export type artistType = typeof artistList[0]
 
 export default function Navigation () {
   const [token, setToken] = React.useState(localStorage.getItem('accessToken'))
+  const [playlistItems, setPlaylistItems] = React.useState<Track[]>([])
+  const [playlistName, setPlaylistName] = React.useState<string>('')
 
   function fetchToken (code: string | string[]) {
     localStorage.setItem('authCode', code.toString())
@@ -67,7 +70,7 @@ export default function Navigation () {
   }
 
   function fetchRefreshToken () {
-    fetch(
+    return fetch(
       `/auth/refresh?refresh_token=${localStorage.getItem('refreshToken')}`,
       {
         method: 'Post',
@@ -80,7 +83,6 @@ export default function Navigation () {
       .then(res => {
         window.localStorage.setItem('accessToken', res.access_token)
         setToken(res.access_token)
-        console.log('new refreshed token:', token)
       })
       .catch(() => console.log('Error while fetching the refresh token'))
   }
@@ -109,6 +111,8 @@ export default function Navigation () {
                 token={token}
                 fetchRefreshToken={fetchRefreshToken}
                 type="tracks"
+                setPlaylistItems={setPlaylistItems}
+                setPlaylistName={setPlaylistName}
               />
               <div></div>
             </div>
@@ -126,12 +130,29 @@ export default function Navigation () {
                 token={token}
                 fetchRefreshToken={fetchRefreshToken}
                 type="artists"
+                setPlaylistItems={setPlaylistItems}
+                setPlaylistName={setPlaylistName}
               />
               <div></div>
             </div>
               )}
         </Route>
-        <Route path="/ggg" exact></Route>
+        <Route path="/myPlaylist" exact>
+          {playlistName === '' || playlistItems.length === 0
+            ? (
+            <Redirect to="/" />
+              )
+            : (
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <SideNav />
+              <PlaylistPage
+                listItems={playlistItems}
+                playlistName={playlistName}
+              />
+              <div></div>
+            </div>
+              )}
+        </Route>
       </Switch>
     </Router>
   )

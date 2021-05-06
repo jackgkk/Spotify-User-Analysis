@@ -25,7 +25,7 @@ const getTopItems = (req: Request, res: Response) => {
 
   axios(config)
     .then(response => {
-      res.send(handleResponseObject(response))
+      res.send(handleResponseObject(response.data.items))
     })
     .catch(err => {
       if (err.response) {
@@ -43,14 +43,13 @@ const getTopItems = (req: Request, res: Response) => {
         console.log(err.request)
       } else {
         // Something happened in setting up the request that triggered an Error
-        console.log("Error", err.message)
+        console.log("Error geting top artists", err)
       }
     })
 }
 
-function handleResponseObject(res: AxiosResponse) {
+function handleResponseObject(items: any) {
   let position = 0
-  const items = res.data.items
   if (items[0].type === "track")
     return items.map((e: any) => {
       position++
@@ -80,4 +79,4 @@ function handleResponseObject(res: AxiosResponse) {
     })
 }
 
-export default { getTopItems }
+export default { getTopItems, handleResponseObject }
