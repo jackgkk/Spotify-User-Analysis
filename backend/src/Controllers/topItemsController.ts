@@ -52,22 +52,22 @@ function handleResponseObject(items: any) {
   let position = 0
   if (items[0].type === "track")
     return items
-    .filter((e: any) => e.album.images[1] != undefined)
-    .map((e: any) => {
-      if (e.album.images[1]) {
-        position++
-        return new Track(
-          e.id,
-          position,
-          e.name,
-          e.artists.map((a: { name: String }) => a.name),
-          e.duration_ms,
-          e.external_urls.spotify,
-          e.album.images[1].url,
-          e.preview_url
-        )
-      } else return
-    })
+      .filter((e: any) => e.album.images[1] != undefined)
+      .map((e: any) => {
+        if (e.album.images[1]) {
+          position++
+          return new Track(
+            e.id,
+            position,
+            e.name,
+            e.artists.map((a: { name: String }) => a.name),
+            e.duration_ms,
+            e.external_urls.spotify,
+            e.album.images[1].url,
+            e.preview_url
+          )
+        } else return
+      })
   else if (items[0].type === "artist")
     return items
       .filter((e: any) => e.images[1] != undefined)

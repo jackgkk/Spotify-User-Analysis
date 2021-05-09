@@ -31,11 +31,16 @@ export default function PlaylistPage ({
             <button
               onClick={() => (window.location.href = playlistUrl)}
               className="smallButton"
+              id="openOnSpotify"
             >
               Open on Spotify
             </button>
 
-            <button onClick={() => history.push('/')} className="smallButton">
+            <button
+              id="goBack"
+              onClick={() => history.push('/')}
+              className="smallButton"
+            >
               Go Back
             </button>
           </div>

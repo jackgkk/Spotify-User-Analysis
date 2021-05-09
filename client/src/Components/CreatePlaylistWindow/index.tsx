@@ -86,7 +86,6 @@ export default function CreatePlaylistWindow ({
   React.useEffect(() => {
     setListOfItems(items)
   }, [items])
-  console.log(listOfItems)
 
   React.useEffect(() => setLoading(false))
 

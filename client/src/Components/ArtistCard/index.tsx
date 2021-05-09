@@ -3,6 +3,7 @@ import { FunctionExpression } from 'typescript'
 import { Artist, Track } from '../../types'
 import artists from './data'
 import Plus from '../../assets/PlusButton.svg'
+import Close from '../../assets/close.svg'
 import './index.scss'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -11,6 +12,7 @@ interface ArtistCardProps {
   artist: Artist
   pickAnItem: (item: Track | Artist) => void
   pickedItems: (Track | Artist)[]
+  removeAnItem: (id: string) => void
 }
 
 const ranges = [
@@ -35,7 +37,8 @@ function formatNumber (n: number) {
 export default function ArtistCard ({
   artist,
   pickAnItem,
-  pickedItems
+  pickedItems,
+  removeAnItem
 }: ArtistCardProps) {
   function openArtistPage () {
     const newWindow = window.open(artist.url, '_blank', 'noopener,noreferrer')
@@ -78,18 +81,23 @@ export default function ArtistCard ({
               <button className="bareBtn openBtn" onClick={openArtistPage}>
                 open
               </button>
-              <button
-                className="bareBtn plusBtn "
-                onClick={() => pickAnItem(artist)}
-              >
-                {pickedItems.filter(i => i.id === artist.id).length === 0
-                  ? (
+              {pickedItems?.filter(i => i.id === artist.id).length === 0
+                ? (
+                <button
+                  className="bareBtn plusBtn "
+                  onClick={() => pickAnItem(artist)}
+                >
                   <img src={Plus} alt="" />
-                    )
-                  : (
-                  <FontAwesomeIcon icon={faCheck} color="white" />
-                    )}
-              </button>
+                </button>
+                  )
+                : (
+                <button
+                  className="bareBtn plusBtn "
+                  onClick={() => removeAnItem(artist.id)}
+                >
+                  <img src={Close} alt="" />
+                </button>
+                  )}
             </div>
           </div>
         </div>

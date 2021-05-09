@@ -112,6 +112,17 @@
     width: 100%;
     align-items: flex-end;
   }
+
+  .headerButtons {
+    #goBack {
+      max-width: 35%;
+    }
+
+    #openOnSpotify {
+      max-width: 50%;
+    }
+  }
+
   .container {
     padding: 15px 5vw 90px 5vw;
     display: flex;

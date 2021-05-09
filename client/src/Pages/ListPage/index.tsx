@@ -287,6 +287,7 @@ export default function ListPage ({
                   track={e}
                   pickAnItem={pickAnItem}
                   pickedItems={pickedItems}
+                  removeAnItem={removeAnItem}
                 />
                   )
                 } else if (isArtist(e)) {
@@ -296,6 +297,7 @@ export default function ListPage ({
                   artist={e}
                   pickAnItem={pickAnItem}
                   pickedItems={pickedItems}
+                  removeAnItem={removeAnItem}
                 />
                   )
                 }
