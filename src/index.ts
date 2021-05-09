@@ -4,12 +4,13 @@ import auth from './Routes/auth'
 import topItems from './Routes/topItems'
 import recommended from './Routes/getRecommended'
 
+const port = process.env.PORT || 5000
 const app = express()
 app.use(cors())
 app.use('/auth', auth)
 app.use('/topItems', topItems)
 app.use('/recommended', recommended)
 
-app.listen(5000, ()=>{
+app.listen(port, ()=>{
     console.log("started")
 })
