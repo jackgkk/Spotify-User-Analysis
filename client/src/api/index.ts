@@ -1,3 +1,5 @@
+import { Artist, Track } from '../types'
+
 function fetchAuthCode () {
   fetch('/auth', {
     method: 'GET',

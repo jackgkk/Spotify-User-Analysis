@@ -25,7 +25,7 @@ const getTopItems = (req: Request, res: Response) => {
 
   axios(config)
     .then(response => {
-      res.send(handleResponseObject(response))
+      res.send(handleResponseObject(response.data.items))
     })
     .catch(err => {
       if (err.response) {
@@ -43,41 +43,46 @@ const getTopItems = (req: Request, res: Response) => {
         console.log(err.request)
       } else {
         // Something happened in setting up the request that triggered an Error
-        console.log("Error", err.message)
+        console.log("Error geting top artists", err)
       }
     })
 }
 
-function handleResponseObject(res: AxiosResponse) {
+function handleResponseObject(items: any) {
   let position = 0
-  const items = res.data.items
   if (items[0].type === "track")
-    return items.map((e: any) => {
-      position++
-      return new Track(
-        e.id,
-        position,
-        e.name,
-        e.artists.map((a: { name: String }) => a.name),
-        e.duration_ms,
-        e.external_urls.spotify,
-        e.album.images[1].url,
-        e.preview_url
-      )
-    })
+    return items
+      .filter((e: any) => e.album.images[1] != undefined)
+      .map((e: any) => {
+        if (e.album.images[1]) {
+          position++
+          return new Track(
+            e.id,
+            position,
+            e.name,
+            e.artists.map((a: { name: String }) => a.name),
+            e.duration_ms,
+            e.external_urls.spotify,
+            e.album.images[1].url,
+            e.preview_url
+          )
+        } else return
+      })
   else if (items[0].type === "artist")
-    return items.map((e: any) => {
-      position++
-      return new Artist(
-        e.id,
-        position,
-        e.name,
-        e.genres.slice(0, 3),
-        e.followers.total,
-        e.external_urls.spotify,
-        e.images[1].url
-      )
-    })
+    return items
+      .filter((e: any) => e.images[1] != undefined)
+      .map((e: any) => {
+        position++
+        return new Artist(
+          e.id,
+          position,
+          e.name,
+          e.genres.slice(0, 3),
+          e.followers.total,
+          e.external_urls.spotify,
+          e.images[1].url
+        )
+      })
 }
 
-export default { getTopItems }
+export default { getTopItems, handleResponseObject }

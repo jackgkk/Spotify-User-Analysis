@@ -56,7 +56,7 @@
     animation: appearAnimation 250ms ease-out forwards;
     @for $i from 0 through 49 {
       &:nth-child(#{$i}) {
-        animation-delay: 110ms * $i;
+        animation-delay: 75ms * $i;
       }
     }
   }
@@ -98,7 +98,7 @@
   box-sizing: border-box;
 }
 
-@media (max-width: 1050px) {
+@media (max-width: 900px) {
   .headerContainer {
     flex-direction: column-reverse;
   }
@@ -112,6 +112,17 @@
     width: 100%;
     align-items: flex-end;
   }
+
+  .headerButtons {
+    #goBack {
+      max-width: 35%;
+    }
+
+    #openOnSpotify {
+      max-width: 50%;
+    }
+  }
+
   .container {
     padding: 15px 5vw 90px 5vw;
     display: flex;

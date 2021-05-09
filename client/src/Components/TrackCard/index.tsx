@@ -1,6 +1,7 @@
 import * as React from 'react'
 import Play from '../../assets/PlayButton.svg'
 import Plus from '../../assets/PlusButton.svg'
+import Close from '../../assets/close.svg'
 import { Artist, Track } from '../../types'
 import tracks from './data'
 import './index.scss'
@@ -9,9 +10,9 @@ import { faCheck, faPause } from '@fortawesome/free-solid-svg-icons'
 
 interface TrackCardProps {
   track: Track
-  audioElements: HTMLAudioElement[]
-  pickAnItem: (item: Track | Artist) => void
-  pickedItems: (Track | Artist)[]
+  pickAnItem?: (item: Track | Artist) => void
+  pickedItems?: (Track | Artist)[]
+  removeAnItem?: (id: string) => void
 }
 
 function msToHMS (ms: number) {
@@ -22,9 +23,9 @@ function msToHMS (ms: number) {
 
 export default function TrackCard ({
   track,
-  audioElements,
   pickAnItem,
-  pickedItems
+  pickedItems,
+  removeAnItem
 }: TrackCardProps) {
   const [audio] = React.useState(new Audio(track.previewUrl))
   const [playing, setPlaying] = React.useState(false)
@@ -98,18 +99,29 @@ export default function TrackCard ({
               <button className="bareBtn openBtn" onClick={openTackPage}>
                 open
               </button>
-              <button
-                className="bareBtn plusBtn "
-                onClick={() => pickAnItem(track)}
-              >
-                {pickedItems.filter(i => i.id === track.id).length === 0
-                  ? (
-                  <img src={Plus} alt="" />
-                    )
-                  : (
-                  <FontAwesomeIcon icon={faCheck} color="white" />
-                    )}
-              </button>
+              {pickAnItem && removeAnItem
+                ? (
+                    pickedItems?.filter(i => i.id === track.id).length === 0
+                      ? (
+                  <button
+                    className="bareBtn plusBtn "
+                    onClick={() => pickAnItem(track)}
+                  >
+                    <img src={Plus} alt="" />
+                  </button>
+                        )
+                      : (
+                  <button
+                    className="bareBtn plusBtn "
+                    onClick={() => removeAnItem(track.id)}
+                  >
+                    <img src={Close} alt="" />
+                  </button>
+                        )
+                  )
+                : (
+                    ''
+                  )}
             </div>
           </div>
         </div>

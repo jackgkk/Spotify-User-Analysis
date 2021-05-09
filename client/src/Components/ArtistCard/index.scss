@@ -77,7 +77,7 @@
   box-sizing: border-box;
   text-align: left;
   .animationTextWrapper {
-    max-height: 25px;
+    max-height: fit-content;
     overflow: hidden;
   }
 
@@ -98,7 +98,7 @@
     font-weight: 400;
     font-size: 12px;
     line-height: 16px;
-    margin: 7px 0px 0px 0px;
+    margin: 3px 0px 15px 0px;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -106,7 +106,7 @@
 }
 
 #followersPar {
-  margin-top: 20px;
+  margin-top: 0px;
 }
 
 #followers {
@@ -162,6 +162,7 @@
   .mainContent {
     width: 76%;
   }
+
   .artistCard-component * .cardWrap {
     width: clamp(200px, 90vw, 400px);
     min-height: 120px;
