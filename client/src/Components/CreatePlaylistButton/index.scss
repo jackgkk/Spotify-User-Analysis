@@ -1,6 +1,14 @@
-.playlistButtonContainer {
+.headerButtons {
   margin-top: 30px;
   margin-right: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 320px;
+}
+
+.playlistButtonContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -39,19 +47,43 @@
   cursor: pointer;
 }
 
-@media (max-width: 900px) {
-  .spaceDiv2 {
-    display: block;
-    height: 60px;
-  }
-  .playlistButtonContainer {
+@media (max-width: 1050px) {
+  .headerButtons {
+    width: 70%;
     position: fixed;
     top: 20px;
+    z-index: 100;
+  }
+
+  #logoutBtn {
+    max-width: 150px;
+  }
+  .spaceDiv2 {
+    display: block;
+    height: 80px;
+  }
+  .playlistButtonContainer {
     margin: 0px;
     z-index: 100;
     box-sizing: border-box;
   }
   .smallButton {
     margin: 0;
+  }
+}
+
+@media (max-width: 650px) {
+  .headerButtons {
+    padding: 0px 20px;
+    margin-right: 0px;
+    width: 100%;
+    left: 0px;
+    right: 0px;
+    top: 10px;
+  }
+
+  #logoutBtn {
+    max-width: clamp(80px, 32vw, 110px);
+    font-size: clamp(8px, 3.5vw, 12px);
   }
 }

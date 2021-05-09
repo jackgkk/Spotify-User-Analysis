@@ -3,8 +3,8 @@ import express, { query, Request, Response } from "express"
 import { create } from "node:domain"
 import { send } from "node:process"
 import Track from "../Models/trackModel"
-import getTopItemsController from '../Controllers/topItemsController'
-
+import getTopItemsController from "../Controllers/topItemsController"
+let playlistUrl = ""
 
 function getRecommendedItems(req: Request, res: Response) {
   const token = req.query.token
@@ -15,8 +15,8 @@ function getRecommendedItems(req: Request, res: Response) {
   const url = "https://api.spotify.com/v1/recommendations"
   let trackList: Track[] = []
 
-  if (seedArtists?.length == 0) seedArtists = 'xxxxxxxxxxxxxxxxxxxxxx'
-  if (seedTracks?.length == 0) seedTracks = 'xxxxxxxxxxxxxxxxxxxxxx'
+  if (seedArtists?.length == 0) seedArtists = "xxxxxxxxxxxxxxxxxxxxxx"
+  if (seedTracks?.length == 0) seedTracks = "xxxxxxxxxxxxxxxxxxxxxx"
   const queryParams =
     url +
     "?" +
@@ -35,9 +35,11 @@ function getRecommendedItems(req: Request, res: Response) {
       }
     })
     .then(response => {
-      trackList = getTopItemsController.handleResponseObject(response.data.tracks)
+      trackList = getTopItemsController.handleResponseObject(
+        response.data.tracks
+      )
       createAndAddItemsToPlaylist(token!.toString(), response, name!.toString())
-        .then(response => res.send(trackList))
+        .then(response => res.send({trackList: trackList, playlistUrl: playlistUrl}))
         .catch(err => {
           console.log(err)
           res.status(err.status).send()
@@ -88,7 +90,10 @@ async function createPlaylist(userId: string, name: string, token: string) {
     data: body
   }
   await axios(config)
-    .then(res => (playlistId = res.data.id))
+    .then(res => {
+      playlistId = res.data.id
+      playlistUrl = res.data.external_urls.spotify
+    })
     .catch(err => console.log(err.response, "error creating playlist"))
 
   return playlistId

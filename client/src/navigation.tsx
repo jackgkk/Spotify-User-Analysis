@@ -50,6 +50,11 @@ export default function Navigation () {
   const [token, setToken] = React.useState(localStorage.getItem('accessToken'))
   const [playlistItems, setPlaylistItems] = React.useState<Track[]>([])
   const [playlistName, setPlaylistName] = React.useState<string>('')
+  const [playlistUrl, setPlaylistUrl] = React.useState<string>('')
+
+  React.useEffect(() => {
+    setToken(localStorage.getItem('accessToken'))
+  })
 
   function fetchToken (code: string | string[]) {
     localStorage.setItem('authCode', code.toString())
@@ -87,6 +92,12 @@ export default function Navigation () {
       .catch(() => console.log('Error while fetching the refresh token'))
   }
 
+  function logOut () {
+    window.localStorage.removeItem('accessToken')
+    window.localStorage.removeItem('refreshToken')
+    setToken(null)
+  }
+
   return (
     <Router>
       <Switch>
@@ -113,6 +124,8 @@ export default function Navigation () {
                 type="tracks"
                 setPlaylistItems={setPlaylistItems}
                 setPlaylistName={setPlaylistName}
+                logOut={logOut}
+                setPlaylistUrl={setPlaylistUrl}
               />
               <div></div>
             </div>
@@ -132,6 +145,8 @@ export default function Navigation () {
                 type="artists"
                 setPlaylistItems={setPlaylistItems}
                 setPlaylistName={setPlaylistName}
+                logOut={logOut}
+                setPlaylistUrl={setPlaylistUrl}
               />
               <div></div>
             </div>
@@ -148,6 +163,7 @@ export default function Navigation () {
               <PlaylistPage
                 listItems={playlistItems}
                 playlistName={playlistName}
+                playlistUrl={playlistUrl}
               />
               <div></div>
             </div>

@@ -20,6 +20,8 @@ interface ListPageProps {
   type: String
   setPlaylistItems: Dispatch<SetStateAction<Track[]>>
   setPlaylistName: Dispatch<SetStateAction<string>>
+  setPlaylistUrl: Dispatch<SetStateAction<string>>
+  logOut: () => void
 }
 
 const isTrack = (x: any): x is trackType => x.type === 'tracks'
@@ -31,7 +33,9 @@ export default function ListPage ({
   fetchRefreshToken,
   type,
   setPlaylistItems,
-  setPlaylistName
+  setPlaylistName,
+  logOut,
+  setPlaylistUrl
 }: ListPageProps) {
   const history = useHistory()
   const [timeRange, setTimeRange] = React.useState('short_term')
@@ -195,20 +199,26 @@ export default function ListPage ({
   }
 
   function handleSuccessPlaylist (res: any) {
-    setPlaylistItems(
-      res.map((e: Track) => {
-        return new Track(
-          e.id,
-          e.position,
-          e.name,
-          e.artists,
-          e.durationMs,
-          e.url,
-          e.image,
-          e.previewUrl
-        )
-      })
-    )
+    if (!res.playlistUrl || !res.trackList) {
+      console.error('error creating a playlist')
+      history.push('/')
+    } else {
+      setPlaylistUrl(res.playlistUrl)
+      setPlaylistItems(
+        res.trackList.map((e: Track) => {
+          return new Track(
+            e.id,
+            e.position,
+            e.name,
+            e.artists,
+            e.durationMs,
+            e.url,
+            e.image,
+            e.previewUrl
+          )
+        })
+      )
+    }
   }
 
   return (
@@ -262,6 +272,7 @@ export default function ListPage ({
           createPlaylistBasedOnSeeds={createPlaylistBasedOnSeeds}
           items={pickedItems}
           removeAnItem={removeAnItem}
+          logOut={logOut}
         />
       </div>
 

@@ -17,6 +17,10 @@
   box-shadow: 0 0 0 100vw rgba(0, 0, 0, 0.1); /* dark around it */
 }
 
+.createPlaylistWindowContainer > #loadingContainer > .line {
+  box-shadow: 0 0 0 100vw rgba(0, 0, 0, 0.008); /* dark around it */
+}
+
 .playlistP {
   font-family: Open Sans;
   font-style: normal;

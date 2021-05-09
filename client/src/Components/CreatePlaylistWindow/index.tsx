@@ -5,6 +5,7 @@ import * as React from 'react'
 import { isTemplateExpression } from 'typescript'
 import { trackType, artistType } from '../../navigation'
 import { Artist, Track } from '../../types'
+import LoadingBar from '../Loading'
 import './index.scss'
 
 interface Props {
@@ -58,6 +59,7 @@ export default function CreatePlaylistWindow ({
   const [numOfElements, setNumOfElements] = React.useState(20)
   const [nameOfPlaylist, setNameOfPlaylist] = React.useState('Cool Playlist')
   const [errorStack, setErrorStack] = React.useState(false)
+  const [loading, setLoading] = React.useState(false)
 
   function handleNumberOnChange (event: React.ChangeEvent<HTMLInputElement>) {
     let value = parseInt(event.target.value)
@@ -85,6 +87,8 @@ export default function CreatePlaylistWindow ({
     setListOfItems(items)
   }, [items])
   console.log(listOfItems)
+
+  React.useEffect(() => setLoading(false))
 
   return (
     <div className="createPlaylistWindowContainer" ref={wrapperRef}>
@@ -172,6 +176,7 @@ export default function CreatePlaylistWindow ({
           <button
             className="smallButton"
             onClick={() => {
+              setLoading(true)
               createPlaylistBasedOnSeeds(
                 nameOfPlaylist,
                 numOfElements,
@@ -192,6 +197,7 @@ export default function CreatePlaylistWindow ({
           </div>
         </div>
       </div>
+      {loading ? <LoadingBar /> : ''}
     </div>
   )
 }

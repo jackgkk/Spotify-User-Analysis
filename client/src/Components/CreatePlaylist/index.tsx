@@ -11,12 +11,14 @@ interface Props {
     limit: number,
     setErrorStack: React.Dispatch<React.SetStateAction<boolean>>
   ) => Promise<void> | undefined
+  logOut: () => void
 }
 
 export default function CreatePlaylist ({
   createPlaylistBasedOnSeeds,
   items,
-  removeAnItem
+  removeAnItem,
+  logOut
 }: Props) {
   const [togglePopup, setTogglePopup] = React.useState(false)
 
@@ -27,6 +29,7 @@ export default function CreatePlaylist ({
         <CreatePlaylistButton
           items={items}
           onClick={() => setTogglePopup(true)}
+          logOut={logOut}
         />
           )
         : (
