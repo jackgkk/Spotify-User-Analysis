@@ -12,7 +12,7 @@ function fetchAuthCode () {
     .catch(() => console.log('Error while fetching the auth code'))
 }
 
-function fetchTopItems (timeRange: String, token: String, type: String) {
+function fetchTopItems (timeRange: string, token: string, type: string) {
   return fetch(`/topItems?timeRange=${timeRange}&token=${token}&type=${type}`, {
     method: 'GET',
     headers: {

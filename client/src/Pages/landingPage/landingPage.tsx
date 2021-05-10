@@ -8,7 +8,7 @@ import queryString from 'querystring'
 import { useHistory, useLocation } from 'react-router'
 
 interface LandingPageProps {
-  token: String | null
+  token: string | null
   fetchToken: (code: string | string[]) => void
 }
 
