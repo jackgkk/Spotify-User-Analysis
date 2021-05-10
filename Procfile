@@ -1,1 +1,1 @@
-web: node --loader ts-node/esm src/index.ts
+web: npm run start-production
