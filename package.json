@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.js",
+    "start": "node --loader ts-node/esm src/index.js",
     "postinstall": "tsc",
     "dev": "nodemon --exec ts-node src/index.ts",
     "build": "cd client && npm run build",
