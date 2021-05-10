@@ -12,7 +12,7 @@ app.use('/topItems', topItems)
 app.use('/recommended', recommended)
 
 app.listen(port, ()=>{
-    console.log("started")
+    console.log("started on port "+port)
 })
 
 if(process.env.NODE_ENV==='production'){
