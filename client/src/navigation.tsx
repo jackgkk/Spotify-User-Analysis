@@ -1,25 +1,25 @@
-import * as React from 'react'
+import * as React from "react"
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link,
   Redirect
-} from 'react-router-dom'
-import artists from './Components/ArtistCard/data'
-import CreatePlaylistWindow from './Components/CreatePlaylistWindow'
-import SideNav from './Components/SideNav'
-import tracks from './Components/TrackCard/data'
-import LandingPage from './Pages/landingPage/landingPage'
-import ListPage from './Pages/ListPage'
-import PlaylistPage from './Pages/PlaylistPage'
-import { Artist, Track } from './types'
+} from "react-router-dom"
+import artists from "./Components/ArtistCard/data"
+import CreatePlaylistWindow from "./Components/CreatePlaylistWindow"
+import SideNav from "./Components/SideNav"
+import tracks from "./Components/TrackCard/data"
+import LandingPage from "./Pages/landingPage/landingPage"
+import ListPage from "./Pages/ListPage"
+import PlaylistPage from "./Pages/PlaylistPage"
+import { Artist, Track } from "./types"
 
 let count = 0
 const trackList = tracks.map(track => {
   count++
   return new Track(
-    'ajfaksjgasglsalgj',
+    "ajfaksjgasglsalgj",
     count,
     track.name,
     track.artists,
@@ -33,7 +33,7 @@ const trackList = tracks.map(track => {
 const artistList = artists.map(artist => {
   count++
   return new Artist(
-    'ajfaksjgasglsalgj',
+    "ajfaksjgasglsalgj",
     count,
     artist.name,
     artist.genres,
@@ -46,55 +46,55 @@ const artistList = artists.map(artist => {
 export type trackType = typeof trackList[0]
 export type artistType = typeof artistList[0]
 
-export default function Navigation () {
-  const [token, setToken] = React.useState(localStorage.getItem('accessToken'))
+export default function Navigation() {
+  const [token, setToken] = React.useState(localStorage.getItem("accessToken"))
   const [playlistItems, setPlaylistItems] = React.useState<Track[]>([])
-  const [playlistName, setPlaylistName] = React.useState<string>('')
-  const [playlistUrl, setPlaylistUrl] = React.useState<string>('')
+  const [playlistName, setPlaylistName] = React.useState<string>("")
+  const [playlistUrl, setPlaylistUrl] = React.useState<string>("")
 
   React.useEffect(() => {
-    setToken(localStorage.getItem('accessToken'))
+    setToken(localStorage.getItem("accessToken"))
   })
 
-  function fetchToken (code: string | string[]) {
-    localStorage.setItem('authCode', code.toString())
+  function fetchToken(code: string | string[]) {
+    localStorage.setItem("authCode", code.toString())
     fetch(`/auth?code=${code}`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json"
       }
     })
       .then(res => res.json())
       .then(res => {
-        window.localStorage.setItem('accessToken', res.access_token)
-        window.localStorage.setItem('refreshToken', res.refresh_token)
+        window.localStorage.setItem("accessToken", res.access_token)
+        window.localStorage.setItem("refreshToken", res.refresh_token)
 
         setToken(res.access_token)
       })
-      .catch(() => console.log('Error while fetching the token'))
+      .catch(() => console.log("Error while fetching the token"))
   }
 
-  function fetchRefreshToken () {
+  function fetchRefreshToken() {
     return fetch(
-      `/auth/refresh?refresh_token=${localStorage.getItem('refreshToken')}`,
+      `/auth/refresh?refresh_token=${localStorage.getItem("refreshToken")}`,
       {
-        method: 'Post',
+        method: "Post",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json"
         }
       }
     )
       .then(res => res.json())
       .then(res => {
-        window.localStorage.setItem('accessToken', res.access_token)
+        window.localStorage.setItem("accessToken", res.access_token)
         setToken(res.access_token)
       })
-      .catch(() => console.log('Error while fetching the refresh token'))
+      .catch(() => console.log("Error while fetching the refresh token"))
   }
 
-  function logOut () {
-    window.localStorage.removeItem('accessToken')
-    window.localStorage.removeItem('refreshToken')
+  function logOut() {
+    window.localStorage.removeItem("accessToken")
+    window.localStorage.removeItem("refreshToken")
     setToken(null)
   }
 
@@ -102,21 +102,17 @@ export default function Navigation () {
     <Router>
       <Switch>
         <Route exact path="/">
-          {token
-            ? (
+          {token ? (
             <Redirect to="/tracklist" />
-              )
-            : (
+          ) : (
             <LandingPage token={token} fetchToken={fetchToken} />
-              )}
+          )}
         </Route>
         <Route path="/trackList" exact>
-          {!token
-            ? (
+          {!token ? (
             <Redirect to="/" />
-              )
-            : (
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          ) : (
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
               <SideNav />
               <ListPage
                 token={token}
@@ -129,15 +125,13 @@ export default function Navigation () {
               />
               <div></div>
             </div>
-              )}
+          )}
         </Route>
         <Route path="/artistList" exact>
-          {!token
-            ? (
+          {!token ? (
             <Redirect to="/" />
-              )
-            : (
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          ) : (
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
               <SideNav />
               <ListPage
                 token={token}
@@ -150,15 +144,13 @@ export default function Navigation () {
               />
               <div></div>
             </div>
-              )}
+          )}
         </Route>
         <Route path="/myPlaylist" exact>
-          {playlistName === '' || playlistItems.length === 0
-            ? (
+          {playlistName === "" || playlistItems.length === 0 ? (
             <Redirect to="/" />
-              )
-            : (
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          ) : (
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
               <SideNav />
               <PlaylistPage
                 listItems={playlistItems}
@@ -167,7 +159,7 @@ export default function Navigation () {
               />
               <div></div>
             </div>
-              )}
+          )}
         </Route>
       </Switch>
     </Router>

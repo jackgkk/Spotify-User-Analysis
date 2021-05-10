@@ -14,3 +14,7 @@ app.use('/recommended', recommended)
 app.listen(port, ()=>{
     console.log("started")
 })
+
+if(process.env.NODE_ENV==='production'){
+    app.use(express.static('client/build'))
+}
