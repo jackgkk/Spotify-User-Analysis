@@ -1,8 +1,8 @@
 import express from 'express'
 import cors from 'cors'
-import auth from './src/Routes/auth'
-import topItems from './src/Routes/topItems'
-import recommended from './src/Routes/getRecommended'
+import auth from './Routes/auth'
+import topItems from './Routes/topItems'
+import recommended from './Routes/getRecommended'
 
 const port = process.env.PORT || 5000
 const app = express()
