@@ -161,6 +161,7 @@ export default function Navigation() {
             </div>
           )}
         </Route>
+        <Redirect to="/" />
       </Switch>
     </Router>
   )
