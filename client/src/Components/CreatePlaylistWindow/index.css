@@ -1,0 +1,247 @@
+.createPlaylistWindowContainer {
+  width: 453px;
+  height: 776px;
+  background: #ffffff;
+  border: 4px solid #000000;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: 5px;
+  padding: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  position: absolute;
+  top: 66px;
+  right: 10%;
+  z-index: 100;
+  -webkit-box-shadow: 0 0 0 100vw rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0 0 100vw rgba(0, 0, 0, 0.1);
+  /* dark around it */
+}
+
+.createPlaylistWindowContainer > #loadingContainer > .line {
+  -webkit-box-shadow: 0 0 0 100vw rgba(0, 0, 0, 0.008);
+          box-shadow: 0 0 0 100vw rgba(0, 0, 0, 0.008);
+  /* dark around it */
+}
+
+.playlistP {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 27px;
+}
+
+.createPlaylistWindowContainer * .circleImage {
+  width: 50px;
+  height: 50px;
+}
+
+.content {
+  margin-top: 20px;
+  -webkit-box-flex: 2;
+      -ms-flex-positive: 2;
+          flex-grow: 2;
+}
+
+.itemLine {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 15px 0px;
+}
+
+.textDiv {
+  -webkit-box-flex: 2;
+      -ms-flex-positive: 2;
+          flex-grow: 2;
+  padding: 0 20px;
+}
+
+#smallP {
+  text-align: left;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 19px;
+}
+
+#artistNames {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+}
+
+.addItem {
+  width: 100%;
+  border: 2px dashed #000000;
+  border-radius: 5px;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  padding: 10px 0px;
+  margin-top: 15px;
+}
+
+.createPlaylistWindowContainer * .smallButton {
+  border-width: 3px;
+  float: right;
+}
+
+.numOfTracksDiv {
+  max-width: 160px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 20px 0;
+}
+
+.inputButton {
+  font-family: Open Sans;
+  width: 67px;
+  height: 38px;
+  border: 2px dashed #000000;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: 5px;
+  font-weight: bold;
+  padding-left: 10px;
+  -moz-appearance: textfield;
+  -webkit-appearance: textfield;
+          appearance: textfield;
+  margin: 0;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.inputButton:focus {
+  outline: none;
+}
+
+.name {
+  margin-top: 5px;
+  width: 150px;
+}
+
+.footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.wideDiv {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+  width: 100%;
+}
+
+#xIcon {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .mobileHead {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .mobileHead #xIcon {
+    display: block;
+    margin: 0 10px;
+  }
+  .createPlaylistWindowContainer {
+    position: fixed;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    overflow: auto;
+    padding-bottom: 0px;
+  }
+  .footer {
+    padding-bottom: 20px;
+  }
+}
+
+@media (max-width: 430px) {
+  .createPlaylistWindowContainer h3 {
+    font-size: clamp(1.2rem, 8vw, 52px);
+  }
+  .createPlaylistWindowContainer p {
+    font-size: clamp(0.8rem, 4vw, 52px);
+  }
+  .createPlaylistWindowContainer .smallButton {
+    margin-top: 40px;
+  }
+  .footer {
+    -webkit-box-align: unset;
+        -ms-flex-align: unset;
+            align-items: unset;
+  }
+  .wideDiv {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+  }
+  .smallButton,
+  .nameDiv {
+    width: 100%;
+  }
+  .smallButton input,
+  .nameDiv input {
+    width: 100%;
+  }
+  .numOfTracksDiv {
+    margin: 20px 0px;
+  }
+}
+/*# sourceMappingURL=index.css.map */

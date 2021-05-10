@@ -1,0 +1,232 @@
+.cardContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  max-width: -webkit-fit-content;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin-left: -15px;
+}
+
+.artistCard-component * .cardWrap {
+  width: 329px;
+  min-height: 151px;
+  max-height: 151px;
+  border-radius: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: hidden;
+  -webkit-transition: 0.15s ease-out 0.12s;
+  transition: 0.15s ease-out 0.12s;
+}
+
+.artistCard-component * .cardWrap:hover {
+  width: 340px;
+  max-height: -webkit-fit-content;
+  max-height: -moz-fit-content;
+  max-height: fit-content;
+}
+
+.artistCard-component * .cardWrap:hover .animationTextWrapper {
+  max-height: 250px;
+  -webkit-transition: 2s ease-out;
+  transition: 2s ease-out;
+  -webkit-transition-delay: 0.5s;
+          transition-delay: 0.5s;
+}
+
+.artistCard-component * .cardWrap:hover .animationTextWrapper h4 {
+  -webkit-animation: textHoverAnimation 0.1s ease-in 0.12s forwards;
+          animation: textHoverAnimation 0.1s ease-in 0.12s forwards;
+}
+
+.artistCard-component * .cardWrap:hover p {
+  -webkit-animation: textHoverAnimation 0.1s ease-in 0.12s forwards;
+          animation: textHoverAnimation 0.1s ease-in 0.12s forwards;
+}
+
+.artistCard-component * .cardWrap:hover .plusBtn img {
+  -webkit-transition: 0.15s ease-out 0.12s;
+  transition: 0.15s ease-out 0.12s;
+  width: 15px;
+}
+
+@-webkit-keyframes textHoverAnimation {
+  100% {
+    text-overflow: unset;
+    white-space: unset;
+    overflow: unset;
+  }
+}
+
+@keyframes textHoverAnimation {
+  100% {
+    text-overflow: unset;
+    white-space: unset;
+    overflow: unset;
+  }
+}
+
+.artistCard-component * .imageDiv {
+  width: 37%;
+  max-height: 100%;
+  position: relative;
+  cursor: pointer;
+  -webkit-transition: 0.3s ease-out;
+  transition: 0.3s ease-out;
+}
+
+.artistCard-component * .imageDiv #albumImage {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -webkit-filter: brightness(85%);
+          filter: brightness(85%);
+  -webkit-transition: 0.3s ease-out;
+  transition: 0.3s ease-out;
+}
+
+.artistCard-component * .imageDiv:hover #albumImage {
+  -webkit-filter: brightness(90%);
+          filter: brightness(90%);
+}
+
+.artistCard-component * .mainContent {
+  width: 63%;
+  position: relative;
+  padding: 12px 15px 7px 7px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  text-align: left;
+}
+
+.artistCard-component * .mainContent .animationTextWrapper {
+  max-height: -webkit-fit-content;
+  max-height: -moz-fit-content;
+  max-height: fit-content;
+  overflow: hidden;
+}
+
+.artistCard-component * .mainContent h4 {
+  font-family: 'Dela Gothic One';
+  font-weight: 400;
+  color: white;
+  font-size: 20px;
+  line-height: 26px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-align: left;
+}
+
+.artistCard-component * .mainContent p {
+  color: white;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  margin: 3px 0px 15px 0px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+#followersPar {
+  margin-top: 0px;
+}
+
+#followers {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.artistCard-component * #albumImageBlured {
+  position: absolute;
+  width: 110%;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  z-index: -2;
+  -webkit-filter: brightness(75%);
+          filter: brightness(75%);
+}
+
+.artistCard-component * .glassDiv {
+  border-radius: 0px 20px 20px 0px;
+  top: 0px;
+  left: 0px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(154.85deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 108.17%);
+  -webkit-backdrop-filter: blur(20px);
+          backdrop-filter: blur(20px);
+  z-index: -1;
+}
+
+.artistCard-component * .footerButtons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.artistCard-component * .openBtn {
+  margin-right: 22px;
+}
+
+.artistCard-component * .positionNumber {
+  text-align: right;
+  width: 15px;
+}
+
+@media (max-width: 900px) {
+  .imageDiv {
+    width: 34%;
+  }
+  .mainContent {
+    width: 76%;
+  }
+  .artistCard-component * .cardWrap {
+    width: clamp(200px, 90vw, 400px);
+    min-height: 120px;
+    max-height: -webkit-fit-content;
+    max-height: -moz-fit-content;
+    max-height: fit-content;
+  }
+  .artistCard-component * .cardWrap h4 {
+    font-size: clamp(15px, 5vw, 20px);
+  }
+  .artistCard-component * .cardWrap h4,
+  .artistCard-component * .cardWrap p {
+    text-overflow: unset;
+    white-space: unset;
+    overflow: unset;
+  }
+  .artistCard-component * .cardWrap .animationTextWrapper {
+    max-height: 350px;
+  }
+  .artistCard-component * .cardWrap:hover {
+    width: clamp(200px, 90vw, 400px);
+  }
+}
+/*# sourceMappingURL=index.css.map */

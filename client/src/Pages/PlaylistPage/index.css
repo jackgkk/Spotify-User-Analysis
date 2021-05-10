@@ -1,0 +1,520 @@
+.container {
+  padding: 20px 50px 0px 80px;
+  width: 100vw;
+  max-width: 1600px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: block;
+}
+
+.headerContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.headerDiv {
+  max-width: 512px;
+  position: relative;
+}
+
+.headerDiv p {
+  max-width: clamp(300px, 60vw, 715px);
+  font-size: clamp(1rem, 2.4vw, 24px);
+  line-height: clamp(1.5rem, 4vw, 33px);
+  max-width: clamp(330px, 50vw, 512px);
+  margin: clamp(5px, 2vw, 15px) 0px;
+}
+
+.headerDiv h2 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: clamp(2.25rem, 7.5vw, 52px);
+  margin: clamp(5px, 2vw, 15px) 0;
+}
+
+.switchBtns {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 35px 0px;
+  max-width: 370px;
+}
+
+#activated {
+  color: white;
+  background: black;
+}
+
+.listWrap {
+  margin-top: 60px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  width: 100%;
+}
+
+#animateRender .trackCard-component,
+#animateRender .artistCard-component {
+  opacity: 0;
+  -webkit-animation: appearAnimation 250ms ease-out forwards;
+          animation: appearAnimation 250ms ease-out forwards;
+}
+
+#animateRender .trackCard-component:nth-child(0),
+#animateRender .artistCard-component:nth-child(0) {
+  -webkit-animation-delay: 0ms;
+          animation-delay: 0ms;
+}
+
+#animateRender .trackCard-component:nth-child(1),
+#animateRender .artistCard-component:nth-child(1) {
+  -webkit-animation-delay: 75ms;
+          animation-delay: 75ms;
+}
+
+#animateRender .trackCard-component:nth-child(2),
+#animateRender .artistCard-component:nth-child(2) {
+  -webkit-animation-delay: 150ms;
+          animation-delay: 150ms;
+}
+
+#animateRender .trackCard-component:nth-child(3),
+#animateRender .artistCard-component:nth-child(3) {
+  -webkit-animation-delay: 225ms;
+          animation-delay: 225ms;
+}
+
+#animateRender .trackCard-component:nth-child(4),
+#animateRender .artistCard-component:nth-child(4) {
+  -webkit-animation-delay: 300ms;
+          animation-delay: 300ms;
+}
+
+#animateRender .trackCard-component:nth-child(5),
+#animateRender .artistCard-component:nth-child(5) {
+  -webkit-animation-delay: 375ms;
+          animation-delay: 375ms;
+}
+
+#animateRender .trackCard-component:nth-child(6),
+#animateRender .artistCard-component:nth-child(6) {
+  -webkit-animation-delay: 450ms;
+          animation-delay: 450ms;
+}
+
+#animateRender .trackCard-component:nth-child(7),
+#animateRender .artistCard-component:nth-child(7) {
+  -webkit-animation-delay: 525ms;
+          animation-delay: 525ms;
+}
+
+#animateRender .trackCard-component:nth-child(8),
+#animateRender .artistCard-component:nth-child(8) {
+  -webkit-animation-delay: 600ms;
+          animation-delay: 600ms;
+}
+
+#animateRender .trackCard-component:nth-child(9),
+#animateRender .artistCard-component:nth-child(9) {
+  -webkit-animation-delay: 675ms;
+          animation-delay: 675ms;
+}
+
+#animateRender .trackCard-component:nth-child(10),
+#animateRender .artistCard-component:nth-child(10) {
+  -webkit-animation-delay: 750ms;
+          animation-delay: 750ms;
+}
+
+#animateRender .trackCard-component:nth-child(11),
+#animateRender .artistCard-component:nth-child(11) {
+  -webkit-animation-delay: 825ms;
+          animation-delay: 825ms;
+}
+
+#animateRender .trackCard-component:nth-child(12),
+#animateRender .artistCard-component:nth-child(12) {
+  -webkit-animation-delay: 900ms;
+          animation-delay: 900ms;
+}
+
+#animateRender .trackCard-component:nth-child(13),
+#animateRender .artistCard-component:nth-child(13) {
+  -webkit-animation-delay: 975ms;
+          animation-delay: 975ms;
+}
+
+#animateRender .trackCard-component:nth-child(14),
+#animateRender .artistCard-component:nth-child(14) {
+  -webkit-animation-delay: 1050ms;
+          animation-delay: 1050ms;
+}
+
+#animateRender .trackCard-component:nth-child(15),
+#animateRender .artistCard-component:nth-child(15) {
+  -webkit-animation-delay: 1125ms;
+          animation-delay: 1125ms;
+}
+
+#animateRender .trackCard-component:nth-child(16),
+#animateRender .artistCard-component:nth-child(16) {
+  -webkit-animation-delay: 1200ms;
+          animation-delay: 1200ms;
+}
+
+#animateRender .trackCard-component:nth-child(17),
+#animateRender .artistCard-component:nth-child(17) {
+  -webkit-animation-delay: 1275ms;
+          animation-delay: 1275ms;
+}
+
+#animateRender .trackCard-component:nth-child(18),
+#animateRender .artistCard-component:nth-child(18) {
+  -webkit-animation-delay: 1350ms;
+          animation-delay: 1350ms;
+}
+
+#animateRender .trackCard-component:nth-child(19),
+#animateRender .artistCard-component:nth-child(19) {
+  -webkit-animation-delay: 1425ms;
+          animation-delay: 1425ms;
+}
+
+#animateRender .trackCard-component:nth-child(20),
+#animateRender .artistCard-component:nth-child(20) {
+  -webkit-animation-delay: 1500ms;
+          animation-delay: 1500ms;
+}
+
+#animateRender .trackCard-component:nth-child(21),
+#animateRender .artistCard-component:nth-child(21) {
+  -webkit-animation-delay: 1575ms;
+          animation-delay: 1575ms;
+}
+
+#animateRender .trackCard-component:nth-child(22),
+#animateRender .artistCard-component:nth-child(22) {
+  -webkit-animation-delay: 1650ms;
+          animation-delay: 1650ms;
+}
+
+#animateRender .trackCard-component:nth-child(23),
+#animateRender .artistCard-component:nth-child(23) {
+  -webkit-animation-delay: 1725ms;
+          animation-delay: 1725ms;
+}
+
+#animateRender .trackCard-component:nth-child(24),
+#animateRender .artistCard-component:nth-child(24) {
+  -webkit-animation-delay: 1800ms;
+          animation-delay: 1800ms;
+}
+
+#animateRender .trackCard-component:nth-child(25),
+#animateRender .artistCard-component:nth-child(25) {
+  -webkit-animation-delay: 1875ms;
+          animation-delay: 1875ms;
+}
+
+#animateRender .trackCard-component:nth-child(26),
+#animateRender .artistCard-component:nth-child(26) {
+  -webkit-animation-delay: 1950ms;
+          animation-delay: 1950ms;
+}
+
+#animateRender .trackCard-component:nth-child(27),
+#animateRender .artistCard-component:nth-child(27) {
+  -webkit-animation-delay: 2025ms;
+          animation-delay: 2025ms;
+}
+
+#animateRender .trackCard-component:nth-child(28),
+#animateRender .artistCard-component:nth-child(28) {
+  -webkit-animation-delay: 2100ms;
+          animation-delay: 2100ms;
+}
+
+#animateRender .trackCard-component:nth-child(29),
+#animateRender .artistCard-component:nth-child(29) {
+  -webkit-animation-delay: 2175ms;
+          animation-delay: 2175ms;
+}
+
+#animateRender .trackCard-component:nth-child(30),
+#animateRender .artistCard-component:nth-child(30) {
+  -webkit-animation-delay: 2250ms;
+          animation-delay: 2250ms;
+}
+
+#animateRender .trackCard-component:nth-child(31),
+#animateRender .artistCard-component:nth-child(31) {
+  -webkit-animation-delay: 2325ms;
+          animation-delay: 2325ms;
+}
+
+#animateRender .trackCard-component:nth-child(32),
+#animateRender .artistCard-component:nth-child(32) {
+  -webkit-animation-delay: 2400ms;
+          animation-delay: 2400ms;
+}
+
+#animateRender .trackCard-component:nth-child(33),
+#animateRender .artistCard-component:nth-child(33) {
+  -webkit-animation-delay: 2475ms;
+          animation-delay: 2475ms;
+}
+
+#animateRender .trackCard-component:nth-child(34),
+#animateRender .artistCard-component:nth-child(34) {
+  -webkit-animation-delay: 2550ms;
+          animation-delay: 2550ms;
+}
+
+#animateRender .trackCard-component:nth-child(35),
+#animateRender .artistCard-component:nth-child(35) {
+  -webkit-animation-delay: 2625ms;
+          animation-delay: 2625ms;
+}
+
+#animateRender .trackCard-component:nth-child(36),
+#animateRender .artistCard-component:nth-child(36) {
+  -webkit-animation-delay: 2700ms;
+          animation-delay: 2700ms;
+}
+
+#animateRender .trackCard-component:nth-child(37),
+#animateRender .artistCard-component:nth-child(37) {
+  -webkit-animation-delay: 2775ms;
+          animation-delay: 2775ms;
+}
+
+#animateRender .trackCard-component:nth-child(38),
+#animateRender .artistCard-component:nth-child(38) {
+  -webkit-animation-delay: 2850ms;
+          animation-delay: 2850ms;
+}
+
+#animateRender .trackCard-component:nth-child(39),
+#animateRender .artistCard-component:nth-child(39) {
+  -webkit-animation-delay: 2925ms;
+          animation-delay: 2925ms;
+}
+
+#animateRender .trackCard-component:nth-child(40),
+#animateRender .artistCard-component:nth-child(40) {
+  -webkit-animation-delay: 3000ms;
+          animation-delay: 3000ms;
+}
+
+#animateRender .trackCard-component:nth-child(41),
+#animateRender .artistCard-component:nth-child(41) {
+  -webkit-animation-delay: 3075ms;
+          animation-delay: 3075ms;
+}
+
+#animateRender .trackCard-component:nth-child(42),
+#animateRender .artistCard-component:nth-child(42) {
+  -webkit-animation-delay: 3150ms;
+          animation-delay: 3150ms;
+}
+
+#animateRender .trackCard-component:nth-child(43),
+#animateRender .artistCard-component:nth-child(43) {
+  -webkit-animation-delay: 3225ms;
+          animation-delay: 3225ms;
+}
+
+#animateRender .trackCard-component:nth-child(44),
+#animateRender .artistCard-component:nth-child(44) {
+  -webkit-animation-delay: 3300ms;
+          animation-delay: 3300ms;
+}
+
+#animateRender .trackCard-component:nth-child(45),
+#animateRender .artistCard-component:nth-child(45) {
+  -webkit-animation-delay: 3375ms;
+          animation-delay: 3375ms;
+}
+
+#animateRender .trackCard-component:nth-child(46),
+#animateRender .artistCard-component:nth-child(46) {
+  -webkit-animation-delay: 3450ms;
+          animation-delay: 3450ms;
+}
+
+#animateRender .trackCard-component:nth-child(47),
+#animateRender .artistCard-component:nth-child(47) {
+  -webkit-animation-delay: 3525ms;
+          animation-delay: 3525ms;
+}
+
+#animateRender .trackCard-component:nth-child(48),
+#animateRender .artistCard-component:nth-child(48) {
+  -webkit-animation-delay: 3600ms;
+          animation-delay: 3600ms;
+}
+
+#animateRender .trackCard-component:nth-child(49),
+#animateRender .artistCard-component:nth-child(49) {
+  -webkit-animation-delay: 3675ms;
+          animation-delay: 3675ms;
+}
+
+@-webkit-keyframes appearAnimation {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0.6) translateY(-8px);
+            transform: scale(0.6) translateY(-8px);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes appearAnimation {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0.6) translateY(-8px);
+            transform: scale(0.6) translateY(-8px);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.cardWrap {
+  margin-right: 30px;
+  margin-bottom: 40px;
+}
+
+#underlineText {
+  position: relative;
+  max-width: -webkit-fit-content;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+}
+
+#underlineText img {
+  position: absolute;
+  right: 0px;
+  bottom: 0;
+  margin-right: -2px;
+  width: 55%;
+  height: 7px;
+}
+
+.loadingContainer {
+  height: calc(100vh - 300px);
+  width: 100%;
+  position: relative;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+@media (max-width: 900px) {
+  .headerContainer {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+  }
+}
+
+@media (max-width: 650px) {
+  .headerDiv {
+    width: 100%;
+  }
+  .headerContainer {
+    width: 100%;
+    -webkit-box-align: end;
+        -ms-flex-align: end;
+            align-items: flex-end;
+  }
+  .headerButtons #goBack {
+    max-width: 35%;
+  }
+  .headerButtons #openOnSpotify {
+    max-width: 50%;
+  }
+  .container {
+    padding: 15px 5vw 90px 5vw;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    width: 100%;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .container h2 {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    font-size: clamp(2.35rem, 5.85vw, 52px);
+    margin: clamp(5px, 2vw, 15px) 0;
+  }
+  .listWrap {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    margin-top: 20px;
+  }
+  .cardWrap {
+    margin: 0;
+  }
+  .cardContainer {
+    margin: 15px 0px;
+  }
+  .switchBtns {
+    margin: 40px 0px 0px 0px;
+    max-width: 370px;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  .switchButton {
+    font-size: clamp(1.1rem, 2.4vw, 24px);
+  }
+  .switchButton:hover {
+    -webkit-transform: unset;
+            transform: unset;
+    outline: none;
+  }
+}
+
+@media (max-width: 374px) {
+  .headerContainer h2 {
+    font-size: clamp(1.4rem, 9vw, 52px);
+  }
+  .switchButton {
+    font-size: clamp(0.9rem, 4.4vw, 24px);
+    padding: 0px 5%;
+  }
+}
+
+@media (max-width: 221px) {
+  #underlineText img {
+    left: 0;
+  }
+}
+/*# sourceMappingURL=index.css.map */
