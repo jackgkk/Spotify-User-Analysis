@@ -1,1 +1,1 @@
-web: node src/index.js
+web: node --loader ts-node/esm src/index.ts
