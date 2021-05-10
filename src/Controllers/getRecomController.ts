@@ -1,7 +1,5 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios"
 import express, { query, Request, Response } from "express"
-import { create } from "node:domain"
-import { send } from "node:process"
 import Track from "../Models/trackModel"
 import getTopItemsController from "./topItemsController"
 let playlistUrl = ""
