@@ -15,9 +15,9 @@ import tracks from '../../Components/TrackCard/data'
 import { Dispatch, SetStateAction } from 'react'
 
 interface ListPageProps {
-  token: String | null
+  token: string | null
   fetchRefreshToken: () => void
-  type: String
+  type: string
   setPlaylistItems: Dispatch<SetStateAction<Track[]>>
   setPlaylistName: Dispatch<SetStateAction<string>>
   setPlaylistUrl: Dispatch<SetStateAction<string>>
