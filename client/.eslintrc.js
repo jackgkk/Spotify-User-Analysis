@@ -208,7 +208,6 @@ module.exports = {
         "prefer-named-capture-group": "warn",
         "prefer-numeric-literals": "warn",
         "prefer-object-spread": "warn",
-        "prefer-promise-reject-warns": "warn",
         "prefer-reflect": "warn",
         "prefer-regex-literals": "warn",
         "prefer-rest-params": "warn",
