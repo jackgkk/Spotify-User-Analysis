@@ -1,4 +1,3 @@
-
 class Track {
   constructor (id: string, position: number, name: string, artists: string[], durationMs: number, url: string, image: string, previewUrl: string) {
     this.id = id

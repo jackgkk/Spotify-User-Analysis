@@ -1,31 +1,31 @@
-import * as React from 'react'
-import { FunctionExpression } from 'typescript'
-import { Artist, Track } from '../../types'
-import artists from './data'
-import Plus from '../../assets/PlusButton.svg'
-import Close from '../../assets/close.svg'
-import './index.scss'
-import { faCheck } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import * as React from "react"
+import { FunctionExpression } from "typescript"
+import { Artist, Track } from "../../types"
+import artists from "./data"
+import Plus from "../../assets/PlusButton.svg"
+import Close from "../../assets/close.svg"
+import "./index.scss"
+import { faCheck } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 interface ArtistCardProps {
   artist: Artist
   pickAnItem: (item: Track | Artist) => void
   pickedItems: (Track | Artist)[]
-  removeAnItem: (id: string) => void
+  removeAnItem: (item: Track | Artist) => void
 }
 
 const ranges = [
-  { divider: 1e6, suffix: 'M' },
-  { divider: 1e3, suffix: 'K' }
+  { divider: 1e6, suffix: "M" },
+  { divider: 1e3, suffix: "K" }
 ]
 
-function roundToTwo (num: number) {
-  const newNum = num + 'e+1'
-  return +(Math.round(parseFloat(newNum)) + 'e-1')
+function roundToTwo(num: number) {
+  const newNum = num + "e+1"
+  return +(Math.round(parseFloat(newNum)) + "e-1")
 }
 
-function formatNumber (n: number) {
+function formatNumber(n: number) {
   for (let i = 0; i < ranges.length; i++) {
     if (n >= ranges[i].divider) {
       return roundToTwo(n / ranges[i].divider).toString() + ranges[i].suffix
@@ -34,14 +34,14 @@ function formatNumber (n: number) {
   return n.toString()
 }
 
-export default function ArtistCard ({
+export default function ArtistCard({
   artist,
   pickAnItem,
   pickedItems,
   removeAnItem
 }: ArtistCardProps) {
-  function openArtistPage () {
-    const newWindow = window.open(artist.url, '_blank', 'noopener,noreferrer')
+  function openArtistPage() {
+    const newWindow = window.open(artist.url, "_blank", "noopener,noreferrer")
     if (newWindow) newWindow.opener = null
   }
 
@@ -64,7 +64,7 @@ export default function ArtistCard ({
                 <p>
                   {artist.genres.map(e => {
                     if (artist.genres.indexOf(e) !== artist.genres.length - 1) {
-                      return e + ', '
+                      return e + ", "
                     }
 
                     return e
@@ -73,7 +73,7 @@ export default function ArtistCard ({
               </div>
 
               <p id="followersPar">
-                <span id="followers">{formatNumber(artist.followers)}</span>{' '}
+                <span id="followers">{formatNumber(artist.followers)}</span>{" "}
                 followers
               </p>
             </div>
@@ -81,23 +81,21 @@ export default function ArtistCard ({
               <button className="bareBtn openBtn" onClick={openArtistPage}>
                 open
               </button>
-              {pickedItems?.filter(i => i.id === artist.id).length === 0
-                ? (
+              {pickedItems?.filter(i => i.id === artist.id).length === 0 ? (
                 <button
                   className="bareBtn plusBtn "
                   onClick={() => pickAnItem(artist)}
                 >
                   <img src={Plus} alt="" />
                 </button>
-                  )
-                : (
+              ) : (
                 <button
                   className="bareBtn plusBtn "
-                  onClick={() => removeAnItem(artist.id)}
+                  onClick={() => removeAnItem(artist)}
                 >
                   <img src={Close} alt="" />
                 </button>
-                  )}
+              )}
             </div>
           </div>
         </div>
