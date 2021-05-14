@@ -5,7 +5,7 @@ import topItems from "./Routes/topItems"
 import recommended from "./Routes/getRecommended"
 import path from "path"
 
-const port = process.env.PORT || 8080
+const port = process.env.PORT || 5000
 const app = express()
 
 app.use(cors())

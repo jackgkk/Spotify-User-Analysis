@@ -8,10 +8,15 @@ const clientSecret = process.env.CLIENT_SECRET
 const encodedData = Buffer.from(clientId + ":" + clientSecret).toString(
   "base64"
 )
-//const redirectURI = "http://192.168.43.90:3000/"
-const redirectURI = "https://tuneper-spotify-tool.herokuapp.com/"  //|| "https://tuneper.com/"
-const state = "g223u3i2f20"
 
+//uncomment the line below
+const redirectURI = "http://localhost:3000"
+//const redirectURI = "http://192.168.43.90:3000/"
+
+//comment the line below
+//const redirectURI = "https://tuneper-spotify-tool.herokuapp.com/"  //|| "https://tuneper.com/"
+
+const state = "g223u3i2f20"
 const authURL = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${redirectURI}&scope=user-read-private%20playlist-modify-private%20playlist-modify-public%20user-read-email%20user-top-read&state=${state}`
 const tokensURL = "https://accounts.spotify.com/api/token"
 
