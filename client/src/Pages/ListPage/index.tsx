@@ -153,11 +153,11 @@ export default function ListPage({
       })
     } else {
       if (!pickedItems.includes(item)) {
-        if (artistCount.current > 2) {
+        if (item.type === "artists" && artistCount.current > 2) {
           toast.error("Next item should be a Track", {
             position: "top-center"
           })
-        } else if (trackCount.current > 2) {
+        } else if (item.type === "tracks" && trackCount.current > 2) {
           toast.error("Next item should be an Artist", {
             position: "top-center"
           })
