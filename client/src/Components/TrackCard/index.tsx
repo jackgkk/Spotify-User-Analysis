@@ -1,27 +1,27 @@
-import * as React from 'react'
-import Play from '../../assets/PlayButton.svg'
-import Plus from '../../assets/PlusButton.svg'
-import Close from '../../assets/close.svg'
-import { Artist, Track } from '../../types'
-import tracks from './data'
-import './index.scss'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheck, faPause } from '@fortawesome/free-solid-svg-icons'
+import * as React from "react"
+import Play from "../../assets/PlayButton.svg"
+import Plus from "../../assets/PlusButton.svg"
+import Close from "../../assets/close.svg"
+import { Artist, Track } from "../../types"
+import tracks from "./data"
+import "./index.scss"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faCheck, faPause } from "@fortawesome/free-solid-svg-icons"
 
 interface TrackCardProps {
   track: Track
   pickAnItem?: (item: Track | Artist) => void
   pickedItems?: (Track | Artist)[]
-  removeAnItem?: (id: string) => void
+  removeAnItem?: (item: Track | Artist) => void
 }
 
-function msToHMS (ms: number) {
+function msToHMS(ms: number) {
   const minutes = Math.floor(ms / 60000)
   const seconds = ((ms % 60000) / 1000).toFixed(0)
-  return minutes + ':' + (parseInt(seconds) < 10 ? '0' : '') + seconds
+  return minutes + ":" + (parseInt(seconds) < 10 ? "0" : "") + seconds
 }
 
-export default function TrackCard ({
+export default function TrackCard({
   track,
   pickAnItem,
   pickedItems,
@@ -34,8 +34,8 @@ export default function TrackCard ({
     setPlaying(!playing)
   }
 
-  function openTackPage () {
-    const newWindow = window.open(track.url, '_blank', 'noopener,noreferrer')
+  function openTackPage() {
+    const newWindow = window.open(track.url, "_blank", "noopener,noreferrer")
     if (newWindow) newWindow.opener = null
   }
 
@@ -48,10 +48,10 @@ export default function TrackCard ({
   }, [playing])
 
   React.useEffect(() => {
-    audio.addEventListener('ended', () => setPlaying(false))
+    audio.addEventListener("ended", () => setPlaying(false))
     return () => {
       audio.pause()
-      audio.removeEventListener('ended', () => setPlaying(false))
+      audio.removeEventListener("ended", () => setPlaying(false))
     }
   }, [])
 
@@ -62,17 +62,15 @@ export default function TrackCard ({
         <div className="cardWrap">
           <div className="imageDiv" onClick={toggleAudio}>
             <img src={track.image} alt="" id="albumImage" />
-            {playing
-              ? (
+            {playing ? (
               <FontAwesomeIcon
                 className="playBtn"
                 icon={faPause}
                 color="white"
               />
-                )
-              : (
+            ) : (
               <img src={Play} alt="" className="playBtn" />
-                )}
+            )}
           </div>
           <div className="mainContent">
             <img src={track.image} alt="" id="albumImageBlured" />
@@ -85,7 +83,7 @@ export default function TrackCard ({
                 <h5>
                   {track.artists.map(e => {
                     if (track.artists.indexOf(e) !== track.artists.length - 1) {
-                      return e + ', '
+                      return e + ", "
                     }
 
                     return e
@@ -99,29 +97,25 @@ export default function TrackCard ({
               <button className="bareBtn openBtn" onClick={openTackPage}>
                 open
               </button>
-              {pickAnItem && removeAnItem
-                ? (
-                    pickedItems?.filter(i => i.id === track.id).length === 0
-                      ? (
+              {pickAnItem && removeAnItem ? (
+                pickedItems?.filter(i => i.id === track.id).length === 0 ? (
                   <button
                     className="bareBtn plusBtn "
                     onClick={() => pickAnItem(track)}
                   >
                     <img src={Plus} alt="" />
                   </button>
-                        )
-                      : (
+                ) : (
                   <button
                     className="bareBtn plusBtn "
-                    onClick={() => removeAnItem(track.id)}
+                    onClick={() => removeAnItem(track)}
                   >
                     <img src={Close} alt="" />
                   </button>
-                        )
-                  )
-                : (
-                    ''
-                  )}
+                )
+              ) : (
+                ""
+              )}
             </div>
           </div>
         </div>

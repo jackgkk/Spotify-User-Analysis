@@ -1,11 +1,11 @@
-import * as React from 'react'
-import { Artist, Track } from '../../types'
-import CreatePlaylistButton from '../CreatePlaylistButton'
-import CreatePlaylistWindow from '../CreatePlaylistWindow'
+import * as React from "react"
+import { Artist, Track } from "../../types"
+import CreatePlaylistButton from "../CreatePlaylistButton"
+import CreatePlaylistWindow from "../CreatePlaylistWindow"
 
 interface Props {
   items: (Artist | Track)[] | null
-  removeAnItem: (id: string) => void
+  removeAnItem: (item: Artist | Track) => void
   createPlaylistBasedOnSeeds: (
     name: string,
     limit: number,
@@ -14,7 +14,7 @@ interface Props {
   logOut: () => void
 }
 
-export default function CreatePlaylist ({
+export default function CreatePlaylist({
   createPlaylistBasedOnSeeds,
   items,
   removeAnItem,
@@ -24,22 +24,20 @@ export default function CreatePlaylist ({
 
   return (
     <>
-      {!togglePopup
-        ? (
+      {!togglePopup ? (
         <CreatePlaylistButton
           items={items}
           onClick={() => setTogglePopup(true)}
           logOut={logOut}
         />
-          )
-        : (
+      ) : (
         <CreatePlaylistWindow
           items={items}
           onClick={() => setTogglePopup(false)}
           removeAnItem={removeAnItem}
           createPlaylistBasedOnSeeds={createPlaylistBasedOnSeeds}
         />
-          )}
+      )}
     </>
   )
 }

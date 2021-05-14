@@ -5,6 +5,7 @@ module.exports = {
     },
     "extends": [
         "eslint:recommended",
+        "plugin:react/recommended",
         "plugin:@typescript-eslint/recommended"
     ],
     "parser": "@typescript-eslint/parser",
@@ -207,6 +208,7 @@ module.exports = {
         "prefer-named-capture-group": "warn",
         "prefer-numeric-literals": "warn",
         "prefer-object-spread": "warn",
+        "prefer-promise-reject-warns": "warn",
         "prefer-reflect": "warn",
         "prefer-regex-literals": "warn",
         "prefer-rest-params": "warn",
